@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using HicoreEquipmentStudio.ViewModel.Alarms;
+
 namespace HicoreEquipmentStudio.ViewModel
 {
     public sealed class ViewModelStore

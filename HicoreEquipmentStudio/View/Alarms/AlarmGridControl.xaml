@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="HicoreEquipmentStudio.View.Alarms.AlarmGridControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DataGrid Margin="10"
+              AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              HeadersVisibility="Column"
+              ItemsSource="{Binding Alarms}"
+              SelectedItem="{Binding SelectedAlarm}">
+
+        <DataGrid.Columns>
+
+            <DataGridTextColumn Header="ALID"
+                                Binding="{Binding ALID}"
+                                Width="70"/>
+
+            <DataGridTextColumn Header="Alarm Name"
+                                Binding="{Binding AlarmName}"
+                                Width="150"/>
+
+            <DataGridTextColumn Header="Source Type"
+                                Binding="{Binding SourceType}"
+                                Width="110"/>
+
+            <DataGridTextColumn Header="Address / Source"
+                                Binding="{Binding Address}"
+                                Width="130"/>
+
+            <DataGridTextColumn Header="Condition / Value"
+                                Binding="{Binding Condition}"
+                                Width="140"/>
+
+            <DataGridTextColumn Header="Severity"
+                                Binding="{Binding Severity}"
+                                Width="90"/>
+
+            <DataGridTextColumn Header="Category"
+                                Binding="{Binding Category}"
+                                Width="110"/>
+
+            <DataGridCheckBoxColumn Header="Enabled"
+                                    Binding="{Binding Enabled}"
+                                    Width="80"/>
+
+            <DataGridTextColumn Header="Description"
+                                Binding="{Binding Description}"
+                                Width="*"/>
+
+        </DataGrid.Columns>
+
+    </DataGrid>
+
+</UserControl>

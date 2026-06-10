@@ -71,15 +71,32 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Model\AlarmHistoryModel.cs" />
+    <Compile Include="Model\AlarmModel.cs" />
     <Compile Include="Model\ReadHistoryModel.cs" />
     <Compile Include="Model\VariableModel.cs" />
+    <Compile Include="ViewModel\Alarms\AlarmViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ConfigurationItemViewModel.cs" />
     <Compile Include="ViewModel\ConfigurationViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\Variable\AlarmViewModel.cs" />
     <Compile Include="ViewModel\Variable\VariableViewModel.cs" />
     <Compile Include="ViewModel\ViewModelStore.cs" />
+    <Compile Include="View\Alarms\AlarmDetailsControl.xaml.cs">
+      <DependentUpon>AlarmDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Alarms\AlarmGridControl.xaml.cs">
+      <DependentUpon>AlarmGridControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Alarms\AlarmMainView.xaml.cs">
+      <DependentUpon>AlarmMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Alarms\AlarmPreviewControl.xaml.cs">
+      <DependentUpon>AlarmPreviewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Alarms\AlarmToolbarControl.xaml.cs">
+      <DependentUpon>AlarmToolbarControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ConfigurationControl.xaml.cs">
       <DependentUpon>ConfigurationControl.xaml</DependentUpon>
     </Compile>
@@ -113,6 +130,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Alarms\AlarmDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Alarms\AlarmGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Alarms\AlarmMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Alarms\AlarmPreviewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Alarms\AlarmToolbarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ConfigurationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
