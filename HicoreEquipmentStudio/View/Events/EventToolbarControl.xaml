@@ -71,10 +71,26 @@
                     Style="{StaticResource ToolbarButtonStyle}"
                     Content="✔ Validate"/>
 
-            <TextBox Grid.Column="12"
-                     Margin="5,4"
-                     Style="{StaticResource ToolbarSearchBoxStyle}"
-                     Text="{Binding SearchText}"/>
+            <Grid Grid.Column="12"
+      Width="220"
+      Height="28"
+      Margin="0,4,10,4"
+      HorizontalAlignment="Right">
+
+                <TextBox Style="{StaticResource ToolbarSearchBoxStyle}"
+             Text="{Binding SearchText,
+                            UpdateSourceTrigger=PropertyChanged}"
+             Padding="8,0,25,0"/>
+
+                <TextBlock Text="🔍"
+               FontSize="11"
+               Foreground="#888888"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Margin="0,0,8,0"
+               IsHitTestVisible="False"/>
+
+            </Grid>
 
         </Grid>
 

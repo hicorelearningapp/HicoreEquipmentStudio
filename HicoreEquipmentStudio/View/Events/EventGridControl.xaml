@@ -2,48 +2,51 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <DataGrid Margin="10"
-          AutoGenerateColumns="False"
-          ItemsSource="{Binding Events}"
-          SelectedItem="{Binding SelectedEvent}"
-
-          Style="{StaticResource EquipmentDataGridStyle}"
-
-          ColumnHeaderStyle="{StaticResource EquipmentDataGridHeaderStyle}"
-
-          RowStyle="{StaticResource EquipmentDataGridRowStyle}"
-
-          CellStyle="{StaticResource EquipmentDataGridCellStyle}">
+    <DataGrid Margin="10,0,10,0"
+              AutoGenerateColumns="False"
+              ItemsSource="{Binding Events}"
+              SelectedItem="{Binding SelectedEvent}"
+              Style="{StaticResource EquipmentDataGridStyle}"
+              ColumnHeaderStyle="{StaticResource EquipmentDataGridHeaderStyle}"
+              RowStyle="{StaticResource EquipmentDataGridRowStyle}"
+              CellStyle="{StaticResource EquipmentDataGridCellStyle}"
+              HeadersVisibility="Column"
+              CanUserAddRows="False"
+              CanUserDeleteRows="False"
+              CanUserResizeRows="False"
+              SelectionMode="Single"
+              SelectionUnit="FullRow"
+              GridLinesVisibility="All">
 
         <DataGrid.Columns>
 
             <DataGridTextColumn Header="CEID"
                                 Binding="{Binding CEID}"
-                                Width="80"/>
+                                Width="60"/>
 
             <DataGridTextColumn Header="Event Name"
                                 Binding="{Binding EventName}"
-                                Width="160"/>
+                                Width="170"/>
 
             <DataGridTextColumn Header="Source Type"
                                 Binding="{Binding SourceType}"
-                                Width="120"/>
+                                Width="100"/>
 
             <DataGridTextColumn Header="Source / Trigger Address"
                                 Binding="{Binding SourceAddress}"
-                                Width="180"/>
+                                Width="170"/>
 
             <DataGridTextColumn Header="Trigger Condition / Value"
                                 Binding="{Binding TriggerCondition}"
-                                Width="180"/>
+                                Width="170"/>
 
             <DataGridTextColumn Header="Report Type"
                                 Binding="{Binding ReportType}"
-                                Width="120"/>
+                                Width="100"/>
 
             <DataGridCheckBoxColumn Header="Enabled"
                                     Binding="{Binding Enabled}"
-                                    Width="80"/>
+                                    Width="70"/>
 
             <DataGridTextColumn Header="Description"
                                 Binding="{Binding Description}"
