@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="HicoreEquipmentStudio.View.Mapping.EventMappingGridControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DataGrid AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              ItemsSource="{Binding Events}"
+              SelectedItem="{Binding SelectedEvent}"
+              Style="{StaticResource EquipmentDataGridStyle}"
+              ColumnHeaderStyle="{StaticResource EquipmentDataGridHeaderStyle}"
+              RowStyle="{StaticResource EquipmentDataGridRowStyle}"
+              CellStyle="{StaticResource EquipmentDataGridCellStyle}">
+
+        <DataGrid.Columns>
+
+            <DataGridTextColumn Header="CEID"
+                                Binding="{Binding CEID}"
+                                Width="80"/>
+
+            <DataGridTextColumn Header="Event Name"
+                                Binding="{Binding EventName}"
+                                Width="180"/>
+
+            <DataGridTextColumn Header="Source Type"
+                                Binding="{Binding SourceType}"
+                                Width="120"/>
+
+            <DataGridTextColumn Header="Address"
+                                Binding="{Binding SourceAddress}"
+                                Width="140"/>
+
+            <DataGridTextColumn Header="Trigger"
+                                Binding="{Binding TriggerCondition}"
+                                Width="140"/>
+
+            <DataGridTextColumn Header="Report Type"
+                                Binding="{Binding ReportType}"
+                                Width="120"/>
+
+            <DataGridCheckBoxColumn Header="Enabled"
+                                    Binding="{Binding Enabled}"
+                                    Width="80"/>
+
+            <DataGridTextColumn Header="Description"
+                                Binding="{Binding Description}"
+                                Width="*"/>
+
+        </DataGrid.Columns>
+
+    </DataGrid>
+
+</UserControl>

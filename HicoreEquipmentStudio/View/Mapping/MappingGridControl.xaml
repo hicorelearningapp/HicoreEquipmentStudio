@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="HicoreEquipmentStudio.View.Mapping.MappingGridControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DataGrid Margin="6"
+              AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              HeadersVisibility="Column"
+
+              Style="{StaticResource EquipmentDataGridStyle}"
+
+              ColumnHeaderStyle="{StaticResource EquipmentDataGridHeaderStyle}"
+
+              RowStyle="{StaticResource EquipmentDataGridRowStyle}"
+
+              CellStyle="{StaticResource EquipmentDataGridCellStyle}">
+
+        <DataGrid.Columns>
+
+            <DataGridTextColumn Header="SVID"
+                                Width="70"/>
+
+            <DataGridTextColumn Header="Variable Name"
+                                Width="170"/>
+
+            <DataGridTextColumn Header="Data Type"
+                                Width="100"/>
+
+            <DataGridTextColumn Header="Access"
+                                Width="80"/>
+
+            <DataGridTextColumn Header="Address"
+                                Width="90"/>
+
+            <DataGridTextColumn Header="Engineering Unit"
+                                Width="130"/>
+
+            <DataGridTextColumn Header="Scaling"
+                                Width="80"/>
+
+            <DataGridTextColumn Header="Collection"
+                                Width="120"/>
+
+        </DataGrid.Columns>
+
+    </DataGrid>
+
+</UserControl>

@@ -10,6 +10,7 @@ using HicoreEquipmentStudio.ViewModel.Events;
 using HicoreEquipmentStudio.View.Recipes;
 using HicoreEquipmentStudio.ViewModel.Recipes;
 using HicoreEquipmentStudio.ViewModel.Commands;
+using HicoreEquipmentStudio.ViewModel.Mapping;
 
 namespace HicoreEquipmentStudio.ViewModel
 {
@@ -32,6 +33,7 @@ namespace HicoreEquipmentStudio.ViewModel
         public RecipeViewModel RecipeViewModel { get; } 
 
         public CommandViewModel CommandViewModel { get; }
+        public MappingViewModel MappingViewModel { get; }
         private ViewModelStore()
         {
             VariableViewModel = new VariableViewModel();
@@ -45,6 +47,7 @@ namespace HicoreEquipmentStudio.ViewModel
             RecipeViewModel = new RecipeViewModel();
 
             CommandViewModel = new CommandViewModel();
+            MappingViewModel = new MappingViewModel();
         }
 
         public void Initialize()
@@ -54,6 +57,7 @@ namespace HicoreEquipmentStudio.ViewModel
             InitVM(EventViewModel);
             InitVM(RecipeViewModel);
             InitVM(CommandViewModel);
+            InitVM(MappingViewModel);
         }
 
         private void InitVM(BaseViewModel vm)

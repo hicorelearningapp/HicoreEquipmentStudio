@@ -13,6 +13,7 @@ public class ConfigurationViewModel : BaseViewModel
     public ICommand RecipeCommand { get; }
 
     public ICommand CommandsCommand { get; }
+    public ICommand MappingCommand { get; }
 
     public ConfigurationViewModel()
     {
@@ -31,7 +32,8 @@ public class ConfigurationViewModel : BaseViewModel
         CommandsCommand =
             new RelayCommand(OpenCommands);
 
-
+        MappingCommand =
+            new RelayCommand(OpenMapping);
 
 
     }
@@ -66,6 +68,10 @@ public class ConfigurationViewModel : BaseViewModel
             ViewModelStore.Instance.CommandViewModel;
     }
 
+    private void OpenMapping()
+    {
+        ViewModelStore.Instance.MainViewModel.CurrentViewModel =
+            ViewModelStore.Instance.MappingViewModel;
+    }
 
 }
-

@@ -88,6 +88,7 @@
     <Compile Include="ViewModel\ConfigurationViewModel.cs" />
     <Compile Include="ViewModel\Events\EventViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Mapping\MappingViewModel.cs" />
     <Compile Include="ViewModel\Recipes\RecipeViewModel.cs" />
     <Compile Include="ViewModel\Variable\VariableViewModel.cs" />
     <Compile Include="ViewModel\ViewModelStore.cs" />
@@ -141,6 +142,39 @@
     </Compile>
     <Compile Include="View\Events\EventToolbarControl.xaml.cs">
       <DependentUpon>EventToolbarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mapping\AlarmMappingGridControl.xaml.cs">
+      <DependentUpon>AlarmMappingGridControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mapping\CommandMappingGridControl.xaml.cs">
+      <DependentUpon>CommandMappingGridControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mapping\EventMappingGridControl.xaml.cs">
+      <DependentUpon>EventMappingGridControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mapping\MappingCardsControl.xaml.cs">
+      <DependentUpon>MappingCardsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mapping\MappingDetailsControl.xaml.cs">
+      <DependentUpon>MappingDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mapping\MappingGridControl.xaml.cs">
+      <DependentUpon>MappingGridControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mapping\MappingMainView.xaml.cs">
+      <DependentUpon>MappingMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mapping\MappingSummaryControl.xaml.cs">
+      <DependentUpon>MappingSummaryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mapping\MappingToolbarControl.xaml.cs">
+      <DependentUpon>MappingToolbarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mapping\RecipeMappingGridControl.xaml.cs">
+      <DependentUpon>RecipeMappingGridControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mapping\SVIDMappingControl.xaml.cs">
+      <DependentUpon>SVIDMappingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Recipes\RecipeDetailsControl.xaml.cs">
       <DependentUpon>RecipeDetailsControl.xaml</DependentUpon>
@@ -255,6 +289,50 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Mapping\AlarmMappingGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Mapping\CommandMappingGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Mapping\EventMappingGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Mapping\MappingCardsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Mapping\MappingDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Mapping\MappingGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Mapping\MappingMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Mapping\MappingSummaryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Mapping\MappingToolbarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Mapping\RecipeMappingGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Mapping\SVIDMappingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Recipes\RecipeDetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -343,5 +421,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

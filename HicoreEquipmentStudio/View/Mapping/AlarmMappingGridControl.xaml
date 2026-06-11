@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="HicoreEquipmentStudio.View.Mapping.AlarmMappingGridControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DataGrid AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              ItemsSource="{Binding Alarms}"
+              SelectedItem="{Binding SelectedAlarm}"
+              Style="{StaticResource EquipmentDataGridStyle}"
+              ColumnHeaderStyle="{StaticResource EquipmentDataGridHeaderStyle}"
+              RowStyle="{StaticResource EquipmentDataGridRowStyle}"
+              CellStyle="{StaticResource EquipmentDataGridCellStyle}">
+
+        <DataGrid.Columns>
+
+            <DataGridTextColumn Header="ALID"
+                                Binding="{Binding ALID}"
+                                Width="80"/>
+
+            <DataGridTextColumn Header="Alarm Name"
+                                Binding="{Binding AlarmName}"
+                                Width="180"/>
+
+            <DataGridTextColumn Header="Source Type"
+                                Binding="{Binding SourceType}"
+                                Width="120"/>
+
+            <DataGridTextColumn Header="Address"
+                                Binding="{Binding Address}"
+                                Width="120"/>
+
+            <DataGridTextColumn Header="Condition"
+                                Binding="{Binding Condition}"
+                                Width="120"/>
+
+            <DataGridTextColumn Header="Severity"
+                                Binding="{Binding Severity}"
+                                Width="100"/>
+
+            <DataGridTextColumn Header="Category"
+                                Binding="{Binding Category}"
+                                Width="120"/>
+
+            <DataGridCheckBoxColumn Header="Enabled"
+                                    Binding="{Binding Enabled}"
+                                    Width="80"/>
+
+            <DataGridTextColumn Header="Description"
+                                Binding="{Binding Description}"
+                                Width="*"/>
+
+        </DataGrid.Columns>
+
+    </DataGrid>
+
+</UserControl>

@@ -95,7 +95,8 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}">
+                    <Button Style="{StaticResource MenuButtonStyle}"
+                            Command="{Binding MappingCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="🔗"
                                        FontSize="14"

@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="HicoreEquipmentStudio.View.Mapping.CommandMappingGridControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DataGrid AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              ItemsSource="{Binding Commands}"
+              SelectedItem="{Binding SelectedCommand}"
+              Style="{StaticResource EquipmentDataGridStyle}"
+              ColumnHeaderStyle="{StaticResource EquipmentDataGridHeaderStyle}"
+              RowStyle="{StaticResource EquipmentDataGridRowStyle}"
+              CellStyle="{StaticResource EquipmentDataGridCellStyle}">
+
+        <DataGrid.Columns>
+
+            <DataGridTextColumn Header="RCMD"
+                                Binding="{Binding CommandCode}"
+                                Width="80"/>
+
+            <DataGridTextColumn Header="Command Name"
+                                Binding="{Binding CommandName}"
+                                Width="180"/>
+
+            <DataGridTextColumn Header="Address"
+                                Binding="{Binding Address}"
+                                Width="120"/>
+
+            <DataGridTextColumn Header="Data Type"
+                                Binding="{Binding DataType}"
+                                Width="120"/>
+
+            <DataGridTextColumn Header="Write Value"
+                                Binding="{Binding WriteValue}"
+                                Width="120"/>
+
+            <DataGridTextColumn Header="Readback Address"
+                                Binding="{Binding ReadbackAddress}"
+                                Width="140"/>
+
+            <DataGridTextColumn Header="Readback Value"
+                                Binding="{Binding ReadbackValue}"
+                                Width="140"/>
+
+            <DataGridCheckBoxColumn Header="Enabled"
+                                    Binding="{Binding Enabled}"
+                                    Width="80"/>
+
+            <DataGridTextColumn Header="Description"
+                                Binding="{Binding Description}"
+                                Width="*"/>
+
+        </DataGrid.Columns>
+
+    </DataGrid>
+
+</UserControl>
