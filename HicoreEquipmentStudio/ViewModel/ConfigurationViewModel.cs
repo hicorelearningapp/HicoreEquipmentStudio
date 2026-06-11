@@ -10,6 +10,10 @@ public class ConfigurationViewModel : BaseViewModel
     public ICommand AlarmCommand { get; }
     public ICommand EventCommand { get; }
 
+    public ICommand RecipeCommand { get; }
+
+    public ICommand CommandsCommand { get; }
+
     public ConfigurationViewModel()
     {
         VariableCommand =
@@ -20,6 +24,15 @@ public class ConfigurationViewModel : BaseViewModel
 
         EventCommand =
             new RelayCommand(OpenEvents);
+
+        RecipeCommand =
+            new RelayCommand(OpenRecipes);
+
+        CommandsCommand =
+            new RelayCommand(OpenCommands);
+
+
+
 
     }
 
@@ -40,6 +53,19 @@ public class ConfigurationViewModel : BaseViewModel
         ViewModelStore.Instance.MainViewModel.CurrentViewModel =
             ViewModelStore.Instance.EventViewModel;
     }
+
+    private void OpenRecipes()
+    {
+        ViewModelStore.Instance.MainViewModel.CurrentViewModel =
+            ViewModelStore.Instance.RecipeViewModel;
+    }
+
+    private void OpenCommands()
+    {
+        ViewModelStore.Instance.MainViewModel.CurrentViewModel =
+            ViewModelStore.Instance.CommandViewModel;
+    }
+
 
 }
 

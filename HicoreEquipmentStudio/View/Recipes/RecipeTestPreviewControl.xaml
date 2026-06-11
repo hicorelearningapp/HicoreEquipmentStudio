@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="HicoreEquipmentStudio.View.Recipes.RecipeTestPreviewControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <GroupBox Header="Recipe Test / Preview"
+              Style="{StaticResource DetailsGroupBoxStyle}">
+
+        <Grid Margin="10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <!-- Information -->
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="26"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Last Read Time:"
+                           Style="{StaticResource EditorLabelStyle}"/>
+
+                <TextBlock Grid.Column="1"
+                           VerticalAlignment="Center"
+                           Text="{Binding LastReadTime}"/>
+
+                <TextBlock Grid.Row="1"
+                           Text="Current Recipe ID:"
+                           Style="{StaticResource EditorLabelStyle}"/>
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           VerticalAlignment="Center"
+                           Text="{Binding CurrentRecipeID}"/>
+
+                <TextBlock Grid.Row="2"
+                           Text="Parameter Count:"
+                           Style="{StaticResource EditorLabelStyle}"/>
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           VerticalAlignment="Center"
+                           Text="{Binding ParameterCount}"/>
+
+                <TextBlock Grid.Row="3"
+                           Text="Checksum (Read):"
+                           Style="{StaticResource EditorLabelStyle}"/>
+
+                <TextBlock Grid.Row="3"
+                           Grid.Column="1"
+                           VerticalAlignment="Center"
+                           Text="{Binding Checksum}"/>
+
+            </Grid>
+
+            <!-- Button -->
+
+            <Button Grid.Row="1"
+                    Width="160"
+                    Height="30"
+                    Margin="0,8,0,0"
+                    HorizontalAlignment="Left"
+                    Content="▶ Read from Equipment"/>
+
+        </Grid>
+
+    </GroupBox>
+
+</UserControl>

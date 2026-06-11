@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HicoreEquipmentStudio.View.Events
+namespace HicoreEquipmentStudio.View.Recipes
 {
     /// <summary>
-    /// Interaction logic for EventDetailsControl.xaml
+    /// Interaction logic for RecipeDetailsControl.xaml
     /// </summary>
-    public partial class EventDetailsControl : UserControl
+    public partial class RecipeDetailsControl : UserControl
     {
-        public EventDetailsControl()
+        public RecipeDetailsControl()
         {
             InitializeComponent();
         }
-
     }
 }

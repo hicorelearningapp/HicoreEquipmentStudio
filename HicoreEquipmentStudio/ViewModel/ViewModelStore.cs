@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 using HicoreEquipmentStudio.ViewModel.Alarms;
 using HicoreEquipmentStudio.ViewModel.Events;
+using HicoreEquipmentStudio.View.Recipes;
+using HicoreEquipmentStudio.ViewModel.Recipes;
+using HicoreEquipmentStudio.ViewModel.Commands;
 
 namespace HicoreEquipmentStudio.ViewModel
 {
@@ -25,6 +28,10 @@ namespace HicoreEquipmentStudio.ViewModel
 
         public EventViewModel EventViewModel { get; }
 
+        
+        public RecipeViewModel RecipeViewModel { get; } 
+
+        public CommandViewModel CommandViewModel { get; }
         private ViewModelStore()
         {
             VariableViewModel = new VariableViewModel();
@@ -34,6 +41,10 @@ namespace HicoreEquipmentStudio.ViewModel
             MainViewModel = new MainViewModel();
 
             EventViewModel = new EventViewModel();
+
+            RecipeViewModel = new RecipeViewModel();
+
+            CommandViewModel = new CommandViewModel();
         }
 
         public void Initialize()
@@ -41,6 +52,8 @@ namespace HicoreEquipmentStudio.ViewModel
             InitVM(VariableViewModel);
             InitVM(AlarmViewModel);
             InitVM(EventViewModel);
+            InitVM(RecipeViewModel);
+            InitVM(CommandViewModel);
         }
 
         private void InitVM(BaseViewModel vm)

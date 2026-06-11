@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HicoreEquipmentStudio.View.Events
+namespace HicoreEquipmentStudio.View.Commands
 {
     /// <summary>
-    /// Interaction logic for EventDetailsControl.xaml
+    /// Interaction logic for CommandToolbarControl.xaml
     /// </summary>
-    public partial class EventDetailsControl : UserControl
+    public partial class CommandToolbarControl : UserControl
     {
-        public EventDetailsControl()
+        public CommandToolbarControl()
         {
             InitializeComponent();
         }
-
     }
 }

@@ -5,11 +5,15 @@
              xmlns:layout="clr-namespace:HicoreEquipmentStudio.View.Variable"
              xmlns:alarm="clr-namespace:HicoreEquipmentStudio.View.Alarms"
              xmlns:event="clr-namespace:HicoreEquipmentStudio.View.Events"
+             xmlns:recipe="clr-namespace:HicoreEquipmentStudio.View.Recipes"
+             xmlns:command="clr-namespace:HicoreEquipmentStudio.View.Commands"
 
 
              xmlns:vm="clr-namespace:HicoreEquipmentStudio.ViewModel.Variable"
              xmlns:vms="clr-namespace:HicoreEquipmentStudio.ViewModel.Alarms"
              xmlns:vme="clr-namespace:HicoreEquipmentStudio.ViewModel.Events"
+             xmlns:vmr="clr-namespace:HicoreEquipmentStudio.ViewModel.Recipes"
+             xmlns:vmc="clr-namespace:HicoreEquipmentStudio.ViewModel.Commands"
 
              StartupUri="MainWindow.xaml">
 
@@ -31,6 +35,13 @@
             <event:EventMainView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vmr:RecipeViewModel}">
+            <recipe:RecipeMainView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmc:CommandViewModel}">
+            <command:CommandMainView/>
+        </DataTemplate>
 
         <!-- ============================= -->
         <!-- Menu Button Style -->
@@ -365,11 +376,8 @@
        TargetType="Button">
 
             <Setter Property="Height"
-            Value="30"/>
-
-            <Setter Property="MinWidth"
-            Value="100"/>
-
+            Value="24"/>
+            
             <Setter Property="Margin"
             Value="0,0,10,0"/>
         </Style>
@@ -386,9 +394,6 @@
 
         <Style x:Key="DetailsGroupBoxStyle"
        TargetType="GroupBox">
-
-            <Setter Property="Margin"
-            Value="0"/>
 
             <Setter Property="Padding"
             Value="5"/>
@@ -421,6 +426,73 @@
             Value="#333333"/>
             
             
+            
+
+        </Style>
+
+
+
+        <Style x:Key="SectionHeaderBorderStyle"
+       TargetType="Border">
+
+            <Setter Property="Background"
+            Value="#FAFAFA"/>
+
+            <Setter Property="BorderBrush"
+            Value="#E5E5E5"/>
+
+            <Setter Property="BorderThickness"
+            Value="0,0,0,1"/>
+
+        </Style>
+
+        <Style x:Key="SectionHeaderTextStyle"
+       TargetType="TextBlock">
+
+            <Setter Property="Margin"
+            Value="12,0"/>
+
+            <Setter Property="VerticalAlignment"
+            Value="Center"/>
+
+            <Setter Property="FontSize"
+            Value="14"/>
+
+            <Setter Property="FontWeight"
+            Value="SemiBold"/>
+
+            <Setter Property="Foreground"
+            Value="#2F75B5"/>
+
+        </Style>
+
+        <!-- Primary Button -->
+
+        <Style x:Key="PrimaryButtonStyle"
+       TargetType="Button">
+
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+
+            <Setter Property="Background" Value="#EAF3FF"/>
+            <Setter Property="BorderBrush" Value="#6EA8FE"/>
+            <Setter Property="BorderThickness" Value="1"/>
+
+        </Style>
+
+        <!-- Secondary Button -->
+
+        <Style x:Key="SecondaryButtonStyle"
+       TargetType="Button">
+
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D9D9D9"/>
+            <Setter Property="BorderThickness" Value="1"/>
 
         </Style>
 

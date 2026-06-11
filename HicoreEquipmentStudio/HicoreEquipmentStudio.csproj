@@ -73,16 +73,22 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Model\AlarmHistoryModel.cs" />
     <Compile Include="Model\AlarmModel.cs" />
+    <Compile Include="Model\CommandHistoryModel.cs" />
+    <Compile Include="Model\CommandModel.cs" />
     <Compile Include="Model\EventHistoryModel.cs" />
     <Compile Include="Model\EventModel.cs" />
     <Compile Include="Model\ReadHistoryModel.cs" />
+    <Compile Include="Model\RecipeModel.cs" />
+    <Compile Include="Model\RecipeParameterModel.cs" />
     <Compile Include="Model\VariableModel.cs" />
     <Compile Include="ViewModel\Alarms\AlarmViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Commands\CommandViewModel.cs" />
     <Compile Include="ViewModel\ConfigurationItemViewModel.cs" />
     <Compile Include="ViewModel\ConfigurationViewModel.cs" />
     <Compile Include="ViewModel\Events\EventViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Recipes\RecipeViewModel.cs" />
     <Compile Include="ViewModel\Variable\VariableViewModel.cs" />
     <Compile Include="ViewModel\ViewModelStore.cs" />
     <Compile Include="View\Alarms\AlarmDetailsControl.xaml.cs">
@@ -99,6 +105,21 @@
     </Compile>
     <Compile Include="View\Alarms\AlarmToolbarControl.xaml.cs">
       <DependentUpon>AlarmToolbarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Commands\CommandDetailsControl.xaml.cs">
+      <DependentUpon>CommandDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Commands\CommandGridControl.xaml.cs">
+      <DependentUpon>CommandGridControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Commands\CommandMainView.xaml.cs">
+      <DependentUpon>CommandMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Commands\CommandPreviewControl.xaml.cs">
+      <DependentUpon>CommandPreviewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Commands\CommandToolbarControl.xaml.cs">
+      <DependentUpon>CommandToolbarControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ConfigurationControl.xaml.cs">
       <DependentUpon>ConfigurationControl.xaml</DependentUpon>
@@ -120,6 +141,24 @@
     </Compile>
     <Compile Include="View\Events\EventToolbarControl.xaml.cs">
       <DependentUpon>EventToolbarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipes\RecipeDetailsControl.xaml.cs">
+      <DependentUpon>RecipeDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipes\RecipeGridControl.xaml.cs">
+      <DependentUpon>RecipeGridControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipes\RecipeMainView.xaml.cs">
+      <DependentUpon>RecipeMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipes\RecipeParameterPreviewControl.xaml.cs">
+      <DependentUpon>RecipeParameterPreviewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipes\RecipeTestPreviewControl.xaml.cs">
+      <DependentUpon>RecipeTestPreviewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipes\RecipeToolbarControl.xaml.cs">
+      <DependentUpon>RecipeToolbarControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Variable\VariableDetailsControl.xaml.cs">
       <DependentUpon>VariableDetailsControl.xaml</DependentUpon>
@@ -168,6 +207,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Commands\CommandDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Commands\CommandGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Commands\CommandMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Commands\CommandPreviewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Commands\CommandToolbarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ConfigurationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +252,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Events\EventToolbarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipes\RecipeDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipes\RecipeGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipes\RecipeMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipes\RecipeParameterPreviewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipes\RecipeTestPreviewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipes\RecipeToolbarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

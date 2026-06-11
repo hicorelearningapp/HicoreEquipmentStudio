@@ -104,7 +104,7 @@
 
             <!-- Row 5 -->
             <TextBlock Grid.Row="4"
-                       Text="Source / Trigger Address:"
+                       Text="Source:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <Grid Grid.Row="4"
@@ -113,7 +113,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="8"/>
-                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"
@@ -137,7 +137,7 @@
 
             <!-- Row 6 -->
             <TextBlock Grid.Row="5"
-                       Text="Trigger Condition / Value:"
+                       Text="Value:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <Grid Grid.Row="5"
@@ -146,15 +146,16 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="90"/>
                     <ColumnDefinition Width="8"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="31*"/>
+                    <ColumnDefinition Width="91*"/>
                 </Grid.ColumnDefinitions>
 
                 <ComboBox Grid.Column="0"
-                          Style="{StaticResource EditorComboBoxStyle}"/>
+                          Style="{StaticResource EditorComboBoxStyle}" Margin="0,3,0,3"/>
 
                 <TextBox Grid.Column="2"
                          Style="{StaticResource EditorTextBoxStyle}"
-                         Text="{Binding SelectedEvent.TriggerCondition}"/>
+                         Text="{Binding SelectedEvent.TriggerCondition}" Grid.ColumnSpan="2" Margin="0,3,0,3"/>
 
             </Grid>
 

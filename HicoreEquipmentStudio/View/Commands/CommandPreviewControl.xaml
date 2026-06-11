@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="HicoreEquipmentStudio.View.Commands.CommandPreviewControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <GroupBox Header="Command Test / Preview"
+              Style="{StaticResource DetailsGroupBoxStyle}">
+
+        <Grid Margin="10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="26"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Last Executed Time:" Style="{StaticResource EditorLabelStyle}"/>
+                <TextBlock Grid.Column="1" Text="{Binding LastExecutedTime}" Foreground="#2F75B5"/>
+
+                <TextBlock Grid.Row="1" Text="Execution Status:" Style="{StaticResource EditorLabelStyle}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ExecutionStatus}" Foreground="#2E7D32"/>
+
+                <TextBlock Grid.Row="2" Text="Last Write Value:" Style="{StaticResource EditorLabelStyle}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding LastWriteValue}"/>
+
+                <TextBlock Grid.Row="3" Text="Readback Value:" Style="{StaticResource EditorLabelStyle}"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ReadbackValue}"/>
+
+                <TextBlock Grid.Row="4" Text="Result:" Style="{StaticResource EditorLabelStyle}"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Result}" Foreground="#2E7D32"/>
+
+            </Grid>
+
+            <DataGrid Grid.Row="1"
+                      Margin="0,10,0,0"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding TestHistory}"
+
+                      Style="{StaticResource EquipmentDataGridStyle}"
+                      ColumnHeaderStyle="{StaticResource EquipmentDataGridHeaderStyle}"
+                      RowStyle="{StaticResource EquipmentDataGridRowStyle}"
+                      CellStyle="{StaticResource EquipmentDataGridCellStyle}">
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="Time" Width="150" Binding="{Binding Time}"/>
+                    <DataGridTextColumn Header="Write Value" Width="100" Binding="{Binding WriteValue}"/>
+                    <DataGridTextColumn Header="Readback Value" Width="110" Binding="{Binding ReadbackValue}"/>
+                    <DataGridTextColumn Header="Result" Width="100" Binding="{Binding Result}"/>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+        </Grid>
+
+    </GroupBox>
+
+</UserControl>

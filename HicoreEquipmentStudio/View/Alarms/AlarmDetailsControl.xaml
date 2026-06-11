@@ -115,7 +115,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="8"/>
-                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"

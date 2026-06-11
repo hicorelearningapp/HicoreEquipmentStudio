@@ -37,7 +37,7 @@
 
                 <StackPanel>
 
-                    <!-- Equipment Info -->
+                    <!-- Equipment Info --><!--
                     <Button Style="{StaticResource MenuButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="📄"
@@ -46,7 +46,7 @@
                             <TextBlock Text="Equipment Info"
                                        VerticalAlignment="Center"/>
                         </StackPanel>
-                    </Button>
+                    </Button>-->
 
                     <!-- Selected Item -->
                     <Button Style="{StaticResource MenuButtonStyle}"
@@ -75,7 +75,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}">
+                    <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding CommandsCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="⚙"
                                        FontSize="14"
@@ -84,7 +84,9 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}">
+                    <Button Style="{StaticResource MenuButtonStyle}"
+                        Command="{Binding RecipeCommand}">
+
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="📋"
                                        FontSize="14"
@@ -102,7 +104,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}">
+                    <!--<Button Style="{StaticResource MenuButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="🔍"
                                        FontSize="14"
@@ -118,7 +120,7 @@
                                        Width="25"/>
                             <TextBlock Text="Summary"/>
                         </StackPanel>
-                    </Button>
+                    </Button>-->
 
                 </StackPanel>
 
