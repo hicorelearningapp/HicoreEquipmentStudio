@@ -8,6 +8,7 @@ public class ConfigurationViewModel : BaseViewModel
     public ICommand EquipmentInfoCommand { get; }
     public ICommand VariableCommand { get; }
     public ICommand AlarmCommand { get; }
+    public ICommand EventCommand { get; }
 
     public ConfigurationViewModel()
     {
@@ -17,6 +18,8 @@ public class ConfigurationViewModel : BaseViewModel
         AlarmCommand =
             new RelayCommand(OpenAlarms);
 
+        EventCommand =
+            new RelayCommand(OpenEvents);
 
     }
 
@@ -31,5 +34,12 @@ public class ConfigurationViewModel : BaseViewModel
         ViewModelStore.Instance.MainViewModel.CurrentViewModel =
             ViewModelStore.Instance.AlarmViewModel;
     }
+
+    private void OpenEvents()
+    {
+        ViewModelStore.Instance.MainViewModel.CurrentViewModel =
+            ViewModelStore.Instance.EventViewModel;
+    }
+
 }
 

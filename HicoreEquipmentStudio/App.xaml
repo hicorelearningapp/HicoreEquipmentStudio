@@ -4,9 +4,12 @@
 
              xmlns:layout="clr-namespace:HicoreEquipmentStudio.View.Variable"
              xmlns:alarm="clr-namespace:HicoreEquipmentStudio.View.Alarms"
+             xmlns:event="clr-namespace:HicoreEquipmentStudio.View.Events"
+
 
              xmlns:vm="clr-namespace:HicoreEquipmentStudio.ViewModel.Variable"
              xmlns:vms="clr-namespace:HicoreEquipmentStudio.ViewModel.Alarms"
+             xmlns:vme="clr-namespace:HicoreEquipmentStudio.ViewModel.Events"
 
              StartupUri="MainWindow.xaml">
 
@@ -23,6 +26,11 @@
         <DataTemplate DataType="{x:Type vms:AlarmViewModel}">
             <alarm:AlarmMainView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vme:EventViewModel}">
+            <event:EventMainView/>
+        </DataTemplate>
+
 
         <!-- ============================= -->
         <!-- Menu Button Style -->
@@ -79,6 +87,286 @@
 
             <Setter Property="FontWeight"
                     Value="SemiBold"/>
+
+        </Style>
+
+
+        <Style x:Key="ToolbarButtonStyle"
+                TargetType="Button">
+
+            <Setter Property="Background"
+            Value="Transparent"/>
+
+            <Setter Property="BorderThickness"
+            Value="0"/>
+
+            <Setter Property="Padding"
+            Value="10,0"/>
+
+            <Setter Property="Height"
+            Value="30"/>
+
+            <Setter Property="Cursor"
+            Value="Hand"/>
+
+            <Setter Property="HorizontalContentAlignment"
+            Value="Center"/>
+
+            <Setter Property="VerticalContentAlignment"
+            Value="Center"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="border"
+                        Background="{TemplateBinding Background}">
+
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                             Value="True">
+
+                                <Setter TargetName="border"
+                                Property="Background"
+                                Value="#F3F7FD"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+        <Style x:Key="ToolbarSeparatorStyle"
+        TargetType="Border">
+
+            <Setter Property="Width"
+            Value="1"/>
+
+            <Setter Property="Background"
+            Value="#D9D9D9"/>
+
+            <Setter Property="Margin"
+            Value="4,4"/>
+
+        </Style>
+
+        <Style x:Key="ToolbarSearchBoxStyle"
+        TargetType="TextBox">
+
+            <Setter Property="Height"
+            Value="26"/>
+
+            <Setter Property="BorderBrush"
+            Value="#D9D9D9"/>
+
+            <Setter Property="BorderThickness"
+            Value="1"/>
+
+            <Setter Property="Padding"
+            Value="8,0"/>
+
+        </Style>
+
+
+
+
+        <!-- ========================================= -->
+        <!-- Common DataGrid -->
+        <!-- ========================================= -->
+
+        <Style x:Key="EquipmentDataGridStyle"
+       TargetType="DataGrid">
+
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D9D9D9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="GridLinesVisibility" Value="All"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="RowHeight" Value="28"/>
+            <Setter Property="ColumnHeaderHeight" Value="30"/>
+            <Setter Property="FontSize" Value="12"/>
+
+        </Style>
+
+        <Style x:Key="EquipmentDataGridHeaderStyle"
+       TargetType="DataGridColumnHeader">
+
+            <Setter Property="Background" Value="#F5F5F5"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="BorderBrush" Value="#D9D9D9"/>
+            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+
+        </Style>
+
+        <Style x:Key="EquipmentDataGridRowStyle"
+       TargetType="DataGridRow">
+
+            <Setter Property="Height" Value="28"/>
+
+        </Style>
+
+        <Style x:Key="EquipmentDataGridCellStyle"
+       TargetType="DataGridCell">
+
+            <Setter Property="Padding" Value="6,2"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="#E5E5E5"/>
+            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+
+        </Style>
+
+        <Style x:Key="EditorTextBoxStyle"
+       TargetType="TextBox">
+
+            <Setter Property="Height"
+            Value="24"/>
+
+            <Setter Property="VerticalContentAlignment"
+            Value="Center"/>
+
+            <Setter Property="Padding"
+            Value="4,0"/>
+
+            <Setter Property="BorderBrush"
+            Value="#D0D0D0"/>
+
+            <Setter Property="BorderThickness"
+            Value="1"/>
+
+            <Setter Property="Margin"
+            Value="0,2"/>
+        </Style>
+
+        <Style x:Key="EditorComboBoxStyle"
+       TargetType="ComboBox">
+
+            <Setter Property="Height"
+            Value="24"/>
+
+            <Setter Property="VerticalContentAlignment"
+            Value="Center"/>
+
+            <Setter Property="Margin"
+            Value="0,2"/>
+        </Style>
+
+        <Style x:Key="EditorLabelStyle"
+       TargetType="TextBlock">
+
+            <Setter Property="VerticalAlignment"
+            Value="Center"/>
+
+            <Setter Property="FontSize"
+            Value="12"/>
+
+            <Setter Property="Foreground"
+            Value="#333333"/>
+        </Style>
+
+        <Style x:Key="PrimaryActionButtonStyle"
+       TargetType="Button">
+
+            <Setter Property="Height"
+            Value="30"/>
+
+            <Setter Property="MinWidth"
+            Value="110"/>
+
+            <Setter Property="Margin"
+            Value="0,0,10,0"/>
+
+            <Setter Property="Background"
+            Value="#EAF2FD"/>
+
+            <Setter Property="BorderBrush"
+            Value="#8BB8F3"/>
+
+            <Setter Property="BorderThickness"
+            Value="1"/>
+        </Style>
+
+        <Style x:Key="SecondaryActionButtonStyle"
+       TargetType="Button">
+
+            <Setter Property="Height"
+            Value="30"/>
+
+            <Setter Property="MinWidth"
+            Value="100"/>
+
+            <Setter Property="Margin"
+            Value="0,0,10,0"/>
+        </Style>
+
+
+        <Style x:Key="DisabledActionButtonStyle"
+       TargetType="Button"
+       BasedOn="{StaticResource SecondaryActionButtonStyle}">
+
+            <Setter Property="IsEnabled"
+            Value="False"/>
+        </Style>
+
+
+        <Style x:Key="DetailsGroupBoxStyle"
+       TargetType="GroupBox">
+
+            <Setter Property="Margin"
+            Value="0"/>
+
+            <Setter Property="Padding"
+            Value="5"/>
+
+            <Setter Property="BorderBrush"
+            Value="#D9D9D9"/>
+
+            <Setter Property="BorderThickness"
+            Value="1"/>
+
+            <Setter Property="FontWeight"
+            Value="SemiBold"/>
+
+            <Setter Property="Foreground"
+            Value="#2F75B5"/>
+        </Style>
+
+
+
+        <Style x:Key="PreviewValueStyle"
+       TargetType="TextBlock">
+
+            <Setter Property="VerticalAlignment"
+            Value="Center"/>
+
+            <Setter Property="FontSize"
+            Value="12"/>
+
+            <Setter Property="Foreground"
+            Value="#333333"/>
+            
+            
 
         </Style>
 

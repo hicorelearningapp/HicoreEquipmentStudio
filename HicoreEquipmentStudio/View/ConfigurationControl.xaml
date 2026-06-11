@@ -65,7 +65,8 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}">
+                    <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding EventCommand}">
+
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="📅"
                                        FontSize="14"

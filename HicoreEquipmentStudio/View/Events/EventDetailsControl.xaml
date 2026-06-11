@@ -1,8 +1,8 @@
-﻿<UserControl x:Class="HicoreEquipmentStudio.View.Alarms.AlarmDetailsControl"
+﻿<UserControl x:Class="HicoreEquipmentStudio.View.Events.EventDetailsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <GroupBox Header="Alarm Details"
+    <GroupBox Header="Event Details"
               Style="{StaticResource DetailsGroupBoxStyle}">
 
         <Grid Margin="10">
@@ -27,44 +27,42 @@
             </Grid.RowDefinitions>
 
             <!-- Row 1 -->
-            <TextBlock Text="ALID:"
+            <TextBlock Text="CEID:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Column="1"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedAlarm.ALID}"/>
+                     Text="{Binding SelectedEvent.CEID}"/>
 
             <TextBlock Grid.Column="3"
-                       Text="Category:"
+                       Text="Enabled:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
-            <ComboBox Grid.Column="4"
-                      Style="{StaticResource EditorComboBoxStyle}"
-                      Text="{Binding SelectedAlarm.Category}"/>
+            <CheckBox Grid.Column="4"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding SelectedEvent.Enabled}"/>
 
             <!-- Row 2 -->
-
             <TextBlock Grid.Row="1"
-                       Text="Alarm Name:"
+                       Text="Event Name:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedAlarm.AlarmName}"/>
+                     Text="{Binding SelectedEvent.EventName}"/>
 
             <TextBlock Grid.Row="1"
                        Grid.Column="3"
-                       Text="Enabled:"
+                       Text="Event Priority:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
-            <CheckBox Grid.Row="1"
+            <ComboBox Grid.Row="1"
                       Grid.Column="4"
-                      VerticalAlignment="Center"
-                      IsChecked="{Binding SelectedAlarm.Enabled}"/>
+                      Style="{StaticResource EditorComboBoxStyle}"
+                      Text="{Binding SelectedEvent.EventPriority}"/>
 
             <!-- Row 3 -->
-
             <TextBlock Grid.Row="2"
                        Text="Description:"
                        Style="{StaticResource EditorLabelStyle}"/>
@@ -72,19 +70,19 @@
             <TextBox Grid.Row="2"
                      Grid.Column="1"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedAlarm.Description}"/>
+                     Text="{Binding SelectedEvent.Description}"/>
 
             <TextBlock Grid.Row="2"
                        Grid.Column="3"
-                       Text="Latch:"
+                       Text="Event Category:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <ComboBox Grid.Row="2"
                       Grid.Column="4"
-                      Style="{StaticResource EditorComboBoxStyle}"/>
+                      Style="{StaticResource EditorComboBoxStyle}"
+                      Text="{Binding SelectedEvent.EventCategory}"/>
 
             <!-- Row 4 -->
-
             <TextBlock Grid.Row="3"
                        Text="Source Type:"
                        Style="{StaticResource EditorLabelStyle}"/>
@@ -92,21 +90,21 @@
             <ComboBox Grid.Row="3"
                       Grid.Column="1"
                       Style="{StaticResource EditorComboBoxStyle}"
-                      Text="{Binding SelectedAlarm.SourceType}"/>
+                      Text="{Binding SelectedEvent.SourceType}"/>
 
             <TextBlock Grid.Row="3"
                        Grid.Column="3"
-                       Text="Reset Type:"
+                       Text="Alarm Related:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <ComboBox Grid.Row="3"
                       Grid.Column="4"
-                      Style="{StaticResource EditorComboBoxStyle}"/>
+                      Style="{StaticResource EditorComboBoxStyle}"
+                      Text="{Binding SelectedEvent.AlarmRelated}"/>
 
             <!-- Row 5 -->
-
             <TextBlock Grid.Row="4"
-                       Text="Address / Source:"
+                       Text="Source / Trigger Address:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <Grid Grid.Row="4"
@@ -120,27 +118,26 @@
 
                 <TextBox Grid.Column="0"
                          Style="{StaticResource EditorTextBoxStyle}"
-                         Text="{Binding SelectedAlarm.Address}"/>
+                         Text="{Binding SelectedEvent.SourceAddress}"/>
 
                 <Button Grid.Column="2"
                         Content="Browse"
                         Style="{StaticResource SecondaryActionButtonStyle}"/>
-
             </Grid>
 
             <TextBlock Grid.Row="4"
                        Grid.Column="3"
-                       Text="Debounce (ms):"
+                       Text="Minimum Interval (ms):"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Row="4"
                      Grid.Column="4"
-                     Style="{StaticResource EditorTextBoxStyle}"/>
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding SelectedEvent.MinimumInterval}"/>
 
             <!-- Row 6 -->
-
             <TextBlock Grid.Row="5"
-                       Text="Condition / Value:"
+                       Text="Trigger Condition / Value:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <Grid Grid.Row="5"
@@ -157,53 +154,53 @@
 
                 <TextBox Grid.Column="2"
                          Style="{StaticResource EditorTextBoxStyle}"
-                         Text="{Binding SelectedAlarm.Condition}"/>
+                         Text="{Binding SelectedEvent.TriggerCondition}"/>
 
             </Grid>
 
             <TextBlock Grid.Row="5"
                        Grid.Column="3"
-                       Text="Clear Condition:"
+                       Text="Data 1 (Optional):"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Row="5"
                      Grid.Column="4"
-                     Style="{StaticResource EditorTextBoxStyle}"/>
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding SelectedEvent.Data1}"/>
 
             <!-- Row 7 -->
-
             <TextBlock Grid.Row="6"
-                       Text="Severity:"
+                       Text="Report Type:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <ComboBox Grid.Row="6"
                       Grid.Column="1"
                       Style="{StaticResource EditorComboBoxStyle}"
-                      Text="{Binding SelectedAlarm.Severity}"/>
+                      Text="{Binding SelectedEvent.ReportType}"/>
 
             <TextBlock Grid.Row="6"
                        Grid.Column="3"
-                       Text="Priority:"
+                       Text="Data 2 (Optional):"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Row="6"
                      Grid.Column="4"
-                     Style="{StaticResource EditorTextBoxStyle}"/>
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding SelectedEvent.Data2}"/>
 
             <!-- Buttons -->
-
             <StackPanel Grid.Row="7"
                         Grid.ColumnSpan="5"
                         Orientation="Horizontal"
                         Margin="0,10,0,0">
 
-                <Button Content="💾 Save Alarm"
+                <Button Content="💾 Save Event"
                         Style="{StaticResource PrimaryActionButtonStyle}"/>
 
                 <Button Content="⊘ Cancel"
                         Style="{StaticResource SecondaryActionButtonStyle}"/>
 
-                <Button Content="▶ Test Alarm"
+                <Button Content="▶ Test Event"
                         Style="{StaticResource SecondaryActionButtonStyle}"/>
 
                 <Button Content="⚡ Simulate"

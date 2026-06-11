@@ -1,164 +1,167 @@
 ﻿<UserControl x:Class="HicoreEquipmentStudio.View.Variable.VariableDetailsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HicoreEquipmentStudio.View.Variable"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <GroupBox Header="Variable Details"
-          Margin="0">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-        <Grid Margin="5">
+    <GroupBox Header="Variable Details"
+              Style="{StaticResource DetailsGroupBoxStyle}">
+
+        <Grid Margin="10">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="130"/>
                 <ColumnDefinition Width="220"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="130"/>
                 <ColumnDefinition Width="220"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="36"/>
-                <RowDefinition Height="36"/>
-                <RowDefinition Height="36"/>
-                <RowDefinition Height="36"/>
-                <RowDefinition Height="36"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="45"/>
             </Grid.RowDefinitions>
 
             <!-- Row 1 -->
-            <TextBlock Grid.Row="0"
-                   Grid.Column="0"
-                   Text="Name:"
-                   VerticalAlignment="Center"/>
 
-            <TextBox Grid.Row="0"
-                 Grid.Column="1"
-                 Height="28"
-                 Text="{Binding SelectedVariable.Name}"/>
+            <TextBlock Text="Variable Name:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-            <TextBlock Grid.Row="0"
-                   Grid.Column="3"
-                   Text="Access:"
-                   VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding SelectedVariable.Name}"/>
 
-            <ComboBox Grid.Row="0"
-                  Grid.Column="4"
-                  Height="28"
-                  SelectedItem="{Binding SelectedVariable.Access}"/>
+            <TextBlock Grid.Column="3"
+                       Text="Access:"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <ComboBox Grid.Column="4"
+                      Style="{StaticResource EditorComboBoxStyle}"
+                      SelectedItem="{Binding SelectedVariable.Access}"/>
 
             <!-- Row 2 -->
-            <TextBlock Grid.Row="1"
-                   Grid.Column="0"
-                   Text="Description:"
-                   VerticalAlignment="Center"/>
-
-            <TextBox Grid.Row="1"
-                 Grid.Column="1"
-                 Height="28"
-                 Text="{Binding SelectedVariable.Description}"/>
 
             <TextBlock Grid.Row="1"
-                   Grid.Column="3"
-                   Text="Poll Interval:"
-                   VerticalAlignment="Center"/>
+                       Text="Description:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Row="1"
-                 Grid.Column="4"
-                 Height="28"
-                 Text="{Binding SelectedVariable.PollInterval}"/>
+                     Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding SelectedVariable.Description}"/>
+
+            <TextBlock Grid.Row="1"
+                       Grid.Column="3"
+                       Text="Poll Interval:"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <TextBox Grid.Row="1"
+                     Grid.Column="4"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding SelectedVariable.PollInterval}"/>
 
             <!-- Row 3 -->
-            <TextBlock Grid.Row="2"
-                   Grid.Column="0"
-                   Text="Address:"
-                   VerticalAlignment="Center"/>
-
-            <TextBox Grid.Row="2"
-                 Grid.Column="1"
-                 Height="28"
-                 Text="{Binding SelectedVariable.Address}"/>
 
             <TextBlock Grid.Row="2"
-                   Grid.Column="3"
-                   Text="Units:"
-                   VerticalAlignment="Center"/>
+                       Text="Address:"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <Grid Grid.Row="2"
+                  Grid.Column="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0"
+                         Style="{StaticResource EditorTextBoxStyle}"
+                         Text="{Binding SelectedVariable.Address}"/>
+
+                <Button Grid.Column="2"
+                        Content="Browse"
+                        Style="{StaticResource SecondaryActionButtonStyle}"/>
+
+            </Grid>
+
+            <TextBlock Grid.Row="2"
+                       Grid.Column="3"
+                       Text="Units:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Row="2"
-                 Grid.Column="4"
-                 Height="28"
-                 Text="{Binding SelectedVariable.Units}"/>
+                     Grid.Column="4"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding SelectedVariable.Units}"/>
 
             <!-- Row 4 -->
+
             <TextBlock Grid.Row="3"
-                   Grid.Column="0"
-                   Text="Data Type:"
-                   VerticalAlignment="Center"/>
+                       Text="Data Type:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
             <ComboBox Grid.Row="3"
-                  Grid.Column="1"
-                  Height="28"
-                  SelectedItem="{Binding SelectedVariable.DataType}"/>
+                      Grid.Column="1"
+                      Style="{StaticResource EditorComboBoxStyle}"
+                      SelectedItem="{Binding SelectedVariable.DataType}"/>
 
             <TextBlock Grid.Row="3"
-                   Grid.Column="3"
-                   Text="SVID:"
-                   VerticalAlignment="Center"/>
+                       Grid.Column="3"
+                       Text="SVID:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Row="3"
-                 Grid.Column="4"
-                 Height="28"
-                 Text="{Binding SelectedVariable.SVID}"/>
+                     Grid.Column="4"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding SelectedVariable.SVID}"/>
 
             <!-- Row 5 -->
+
             <TextBlock Grid.Row="4"
-                   Grid.Column="0"
-                   Text="Category:"
-                   VerticalAlignment="Center"/>
+                       Text="Category:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
             <ComboBox Grid.Row="4"
-                  Grid.Column="1"
-                  Height="28"
-                  SelectedItem="{Binding SelectedVariable.Category}"/>
+                      Grid.Column="1"
+                      Style="{StaticResource EditorComboBoxStyle}"
+                      SelectedItem="{Binding SelectedVariable.Category}"/>
 
             <TextBlock Grid.Row="4"
-                   Grid.Column="3"
-                   Text="Default Value:"
-                   VerticalAlignment="Center"/>
+                       Grid.Column="3"
+                       Text="Default Value:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Row="4"
-                 Grid.Column="4"
-                 Height="28"/>
+                     Grid.Column="4"
+                     Style="{StaticResource EditorTextBoxStyle}"/>
 
             <!-- Buttons -->
+
             <StackPanel Grid.Row="5"
-                    Grid.ColumnSpan="5"
-                    Orientation="Horizontal"
-                    Margin="0,12,0,0">
+                        Grid.ColumnSpan="5"
+                        Orientation="Horizontal"
+                        Margin="0,10,0,0">
 
-                <Button Content="Save Variable"
-                    Width="120"
-                    Height="32"
-                    Margin="0,0,8,0"/>
+                <Button Content="💾 Save Variable"
+                        Style="{StaticResource PrimaryActionButtonStyle}"/>
 
-                <Button Content="Cancel"
-                    Width="90"
-                    Height="32"
-                    Margin="0,0,8,0" Click="Button_Click"/>
+                <Button Content="⊘ Cancel"
+                        Style="{StaticResource SecondaryActionButtonStyle}"
+                        Click="Button_Click"/>
 
-                <Button Content="Test Read"
-                    Width="100"
-                    Height="32"
-                    Margin="0,0,8,0"/>
+                <Button Content="▶ Test Read"
+                        Style="{StaticResource SecondaryActionButtonStyle}"/>
 
-                <Button Content="Test Write"
-                    Width="100"
-                    Height="32"/>
+                <Button Content="✎ Test Write"
+                        Style="{StaticResource SecondaryActionButtonStyle}"/>
+
             </StackPanel>
 
         </Grid>
 
     </GroupBox>
+
 </UserControl>

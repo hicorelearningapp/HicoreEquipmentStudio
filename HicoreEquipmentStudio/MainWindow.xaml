@@ -6,12 +6,6 @@
 
         xmlns:view="clr-namespace:HicoreEquipmentStudio.View"
         
-        xmlns:layout="clr-namespace:HicoreEquipmentStudio.View.Variable"
-        xmlns:vm="clr-namespace:HicoreEquipmentStudio.ViewModel.Variable"
-        xmlns:vms="clr-namespace:HicoreEquipmentStudio.ViewModel.Alarms"
-
-        xmlns:alarm="clr-namespace:HicoreEquipmentStudio.View.Alarms"
-        
         mc:Ignorable="d"
         Title="Equipment Studio"
         WindowState="Maximized">

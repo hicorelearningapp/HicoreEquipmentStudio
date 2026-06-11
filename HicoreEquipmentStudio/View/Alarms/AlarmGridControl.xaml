@@ -4,10 +4,12 @@
 
     <DataGrid Margin="10"
               AutoGenerateColumns="False"
-              CanUserAddRows="False"
-              HeadersVisibility="Column"
               ItemsSource="{Binding Alarms}"
-              SelectedItem="{Binding SelectedAlarm}">
+              SelectedItem="{Binding SelectedAlarm}"
+              Style="{StaticResource EquipmentDataGridStyle}"
+              ColumnHeaderStyle="{StaticResource EquipmentDataGridHeaderStyle}"
+              RowStyle="{StaticResource EquipmentDataGridRowStyle}"
+              CellStyle="{StaticResource EquipmentDataGridCellStyle}">
 
         <DataGrid.Columns>
 
@@ -29,7 +31,7 @@
 
             <DataGridTextColumn Header="Condition / Value"
                                 Binding="{Binding Condition}"
-                                Width="140"/>
+                                Width="130"/>
 
             <DataGridTextColumn Header="Severity"
                                 Binding="{Binding Severity}"

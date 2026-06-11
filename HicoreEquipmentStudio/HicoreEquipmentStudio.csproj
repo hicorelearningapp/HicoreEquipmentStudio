@@ -73,12 +73,15 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Model\AlarmHistoryModel.cs" />
     <Compile Include="Model\AlarmModel.cs" />
+    <Compile Include="Model\EventHistoryModel.cs" />
+    <Compile Include="Model\EventModel.cs" />
     <Compile Include="Model\ReadHistoryModel.cs" />
     <Compile Include="Model\VariableModel.cs" />
     <Compile Include="ViewModel\Alarms\AlarmViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ConfigurationItemViewModel.cs" />
     <Compile Include="ViewModel\ConfigurationViewModel.cs" />
+    <Compile Include="ViewModel\Events\EventViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Variable\VariableViewModel.cs" />
     <Compile Include="ViewModel\ViewModelStore.cs" />
@@ -102,6 +105,21 @@
     </Compile>
     <Compile Include="View\EquipmentInformation.xaml.cs">
       <DependentUpon>EquipmentInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Events\EventDetailsControl.xaml.cs">
+      <DependentUpon>EventDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Events\EventGridControl.xaml.cs">
+      <DependentUpon>EventGridControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Events\EventMainView.xaml.cs">
+      <DependentUpon>EventMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Events\EventPreviewControl.xaml.cs">
+      <DependentUpon>EventPreviewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Events\EventToolbarControl.xaml.cs">
+      <DependentUpon>EventToolbarControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Variable\VariableDetailsControl.xaml.cs">
       <DependentUpon>VariableDetailsControl.xaml</DependentUpon>
@@ -155,6 +173,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EquipmentInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Events\EventDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Events\EventGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Events\EventMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Events\EventPreviewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Events\EventToolbarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

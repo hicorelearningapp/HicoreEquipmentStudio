@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using HicoreEquipmentStudio.ViewModel.Alarms;
+using HicoreEquipmentStudio.ViewModel.Events;
 
 namespace HicoreEquipmentStudio.ViewModel
 {
@@ -22,6 +23,8 @@ namespace HicoreEquipmentStudio.ViewModel
 
         public AlarmViewModel AlarmViewModel { get; }
 
+        public EventViewModel EventViewModel { get; }
+
         private ViewModelStore()
         {
             VariableViewModel = new VariableViewModel();
@@ -30,12 +33,14 @@ namespace HicoreEquipmentStudio.ViewModel
 
             MainViewModel = new MainViewModel();
 
+            EventViewModel = new EventViewModel();
         }
 
         public void Initialize()
         {
             InitVM(VariableViewModel);
             InitVM(AlarmViewModel);
+            InitVM(EventViewModel);
         }
 
         private void InitVM(BaseViewModel vm)
@@ -53,59 +58,3 @@ namespace HicoreEquipmentStudio.ViewModel
 }
 
 
-
-//using HicoreEquipmentStudio.ViewModel.Variable;
-//using System;
-
-//namespace HicoreEquipmentStudio.ViewModel
-//{
-//    public sealed class ViewModelStore
-//    {
-//        private static readonly Lazy<ViewModelStore> _instance =
-//            new Lazy<ViewModelStore>(() => new ViewModelStore());
-
-//        public static ViewModelStore Instance => _instance.Value;
-
-//        public MainViewModel MainViewModel { get; }
-
-//        public ConfigurationViewModel ConfigurationViewModel { get; }
-
-//        public VariableViewModel VariableViewModel { get; }
-
-//        public AlarmViewModel AlarmViewModel { get; }
-
-//        private ViewModelStore()
-//        {
-//            // Create Child ViewModels
-//            VariableViewModel = new VariableViewModel();
-
-//            AlarmViewModel = new AlarmViewModel();
-
-//            ConfigurationViewModel = new ConfigurationViewModel();
-
-//            MainViewModel = new MainViewModel();
-
-//            // Default Screen
-//            MainViewModel.CurrentViewModel = VariableViewModel;
-//        }
-
-//        public void Initialize()
-//        {
-//            InitVM(VariableViewModel);
-//            InitVM(AlarmViewModel);
-//            InitVM(ConfigurationViewModel);
-//        }
-
-//        private void InitVM(BaseViewModel vm)
-//        {
-//            try
-//            {
-//                vm?.Initialize();
-//            }
-//            catch (Exception ex)
-//            {
-//                System.Diagnostics.Debug.WriteLine(ex.Message);
-//            }
-//        }
-//    }
-//}
