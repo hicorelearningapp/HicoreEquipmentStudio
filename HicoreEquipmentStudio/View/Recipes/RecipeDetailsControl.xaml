@@ -1,203 +1,224 @@
 ﻿<UserControl x:Class="HicoreEquipmentStudio.View.Recipes.RecipeDetailsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HicoreEquipmentStudio.View.Recipes"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-        <GroupBox Header="Recipe Details"
-          Style="{StaticResource DetailsGroupBoxStyle}">
+    <GroupBox Header="Recipe Details"
+              Style="{StaticResource DetailsGroupBoxStyle}">
 
-            <Grid Margin="15">
+        <Grid Margin="15">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="200"/>
-                </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="220"/>
+            </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
 
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="42"/>
+            <!-- Row 1 -->
 
-                </Grid.RowDefinitions>
+            <TextBlock Text="Recipe ID:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <TextBlock Text="Recipe ID:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <TextBox Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingRecipe.RecipeID,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Column="1"
-                 Style="{StaticResource EditorTextBoxStyle}"
-                 Text="{Binding SelectedRecipe.RecipeID}"/>
+            <TextBlock Grid.Column="3"
+                       Text="Upload Command:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <TextBlock Grid.Column="3"
-                   Text="Upload Command:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <ComboBox Grid.Column="4"
+                      Style="{StaticResource EditorComboBoxStyle}"/>
 
-                <ComboBox Grid.Column="4"
-                  Style="{StaticResource EditorComboBoxStyle}"/>
+            <!-- Row 2 -->
 
-                <TextBlock Grid.Row="1"
-                   Text="Recipe Name:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <TextBlock Grid.Row="1"
+                       Text="Recipe Name:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <TextBox Grid.Row="1"
-                 Grid.Column="1"
-                 Style="{StaticResource EditorTextBoxStyle}"
-                 Text="{Binding SelectedRecipe.RecipeName}"/>
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingRecipe.RecipeName,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBlock Grid.Row="1"
-                   Grid.Column="3"
-                   Text="Download Command:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <TextBlock Grid.Row="1"
+                       Grid.Column="3"
+                       Text="Download Command:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <ComboBox Grid.Row="1"
-                  Grid.Column="4"
-                  Style="{StaticResource EditorComboBoxStyle}"/>
+            <ComboBox Grid.Row="1"
+                      Grid.Column="4"
+                      Style="{StaticResource EditorComboBoxStyle}"/>
 
-                <TextBlock Grid.Row="2"
-                   Text="Description:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <!-- Row 3 -->
 
-                <TextBox Grid.Row="2"
-                 Grid.Column="1"
-                 Style="{StaticResource EditorTextBoxStyle}"
-                 Text="{Binding SelectedRecipe.Description}"/>
+            <TextBlock Grid.Row="2"
+                       Text="Description:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <TextBlock Grid.Row="2"
-                   Grid.Column="3"
-                   Text="Current Recipe ID:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingRecipe.Description,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Row="2"
-                 Grid.Column="4"
-                 Style="{StaticResource EditorTextBoxStyle}"/>
+            <TextBlock Grid.Row="2"
+                       Grid.Column="3"
+                       Text="Current Recipe ID:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <TextBlock Grid.Row="3"
-                   Text="Data Source Type:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <TextBox Grid.Row="2"
+                     Grid.Column="4"
+                     Style="{StaticResource EditorTextBoxStyle}"/>
 
-                <ComboBox Grid.Row="3"
-                  Grid.Column="1"
-                  Style="{StaticResource EditorComboBoxStyle}"/>
+            <!-- Row 4 -->
 
-                <TextBlock Grid.Row="3"
-                   Grid.Column="3"
-                   Text="Max Recipe Length:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <TextBlock Grid.Row="3"
+                       Text="Data Source Type:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <TextBox Grid.Row="3"
-                 Grid.Column="4"
-                 Style="{StaticResource EditorTextBoxStyle}"/>
+            <ComboBox Grid.Row="3"
+                      Grid.Column="1"
+                      Style="{StaticResource EditorComboBoxStyle}"
+                      Text="{Binding EditingRecipe.DataSourceType}"/>
 
-                <TextBlock Grid.Row="4"
-                   Text="Start Address:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <TextBlock Grid.Row="3"
+                       Grid.Column="3"
+                       Text="Max Recipe Length:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <TextBox Grid.Row="4"
-                 Grid.Column="1"
-                 Style="{StaticResource EditorTextBoxStyle}"/>
+            <TextBox Grid.Row="3"
+                     Grid.Column="4"
+                     Style="{StaticResource EditorTextBoxStyle}"/>
 
-                <TextBlock Grid.Row="4"
-                   Grid.Column="3"
-                   Text="Recipe Change Event:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <!-- Row 5 -->
 
-                <ComboBox Grid.Row="4"
-                  Grid.Column="4"
-                  Style="{StaticResource EditorComboBoxStyle}"/>
+            <TextBlock Grid.Row="4"
+                       Text="Start Address:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <TextBlock Grid.Row="5"
-                   Text="Data Format:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <TextBox Grid.Row="4"
+                     Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingRecipe.Address,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
-                <ComboBox Grid.Row="5"
-                  Grid.Column="1"
-                  Style="{StaticResource EditorComboBoxStyle}"/>
+            <TextBlock Grid.Row="4"
+                       Grid.Column="3"
+                       Text="Recipe Change Event:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <TextBlock Grid.Row="5"
-                   Grid.Column="3"
-                   Text="Verify After Download:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <ComboBox Grid.Row="4"
+                      Grid.Column="4"
+                      Style="{StaticResource EditorComboBoxStyle}"/>
 
-                <CheckBox Grid.Row="5"
-          Grid.Column="4"
-          HorizontalAlignment="Left"
-          VerticalAlignment="Center"
-          Margin="4,0,0,0"/>
+            <!-- Row 6 -->
 
-                <TextBlock Grid.Row="6"
-                   Text="Parameter Count:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <TextBlock Grid.Row="5"
+                       Text="Data Format:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <TextBox Grid.Row="6"
-                 Grid.Column="1"
-                 Style="{StaticResource EditorTextBoxStyle}"/>
+            <ComboBox Grid.Row="5"
+                      Grid.Column="1"
+                      Style="{StaticResource EditorComboBoxStyle}"
+                      Text="{Binding EditingRecipe.DataFormat}"/>
 
-                <TextBlock Grid.Row="6"
-                   Grid.Column="3"
-                   Text="Auto Load On Start:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <TextBlock Grid.Row="5"
+                       Grid.Column="3"
+                       Text="Verify After Download:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <CheckBox Grid.Row="6"
-          Grid.Column="4"
-          HorizontalAlignment="Left"
-          VerticalAlignment="Center"
-          Margin="4,0,0,0"/>
+            <CheckBox Grid.Row="5"
+                      Grid.Column="4"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Margin="4,0,0,0"/>
 
-                <TextBlock Grid.Row="7"
-                   Text="Enabled:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <!-- Row 7 -->
 
-                <CheckBox Grid.Row="7"
-          Grid.Column="1"
-          HorizontalAlignment="Left"
-          VerticalAlignment="Center"
-          Margin="4,0,0,0"/>
+            <TextBlock Grid.Row="6"
+                       Text="Parameter Count:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <TextBlock Grid.Row="7"
-                   Grid.Column="3"
-                   Text="Checksum Address:"
-                   Style="{StaticResource EditorLabelStyle}"/>
+            <TextBox Grid.Row="6"
+                     Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingRecipe.ParameterCount,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Row="7"
-                 Grid.Column="4"
-                 Style="{StaticResource EditorTextBoxStyle}"/>
+            <TextBlock Grid.Row="6"
+                       Grid.Column="3"
+                       Text="Auto Load On Start:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                <StackPanel Grid.Row="8"
-                    Grid.ColumnSpan="5"
-                    Orientation="Horizontal"
-                    Margin="0,10,0,0">
+            <CheckBox Grid.Row="6"
+                      Grid.Column="4"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Margin="4,0,0,0"/>
 
-                    <Button Content="💾 Save Recipe"
-                    Style="{StaticResource PrimaryActionButtonStyle}"/>
+            <!-- Row 8 -->
 
-                    <Button Content="⊘ Cancel"
-                    Style="{StaticResource PrimaryActionButtonStyle}"/>
+            <TextBlock Grid.Row="7"
+                       Text="Enabled:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                    <Button Content="▶ Read Recipe Info"
-                    Style="{StaticResource PrimaryActionButtonStyle}"/>
+            <CheckBox Grid.Row="7"
+                      Grid.Column="1"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Margin="4,0,0,0"
+                      IsChecked="{Binding EditingRecipe.Enabled}"/>
 
-                    <Button Content="⚡Download to Equipment"
-                    Style="{StaticResource PrimaryActionButtonStyle}"/>
+            <TextBlock Grid.Row="7"
+                       Grid.Column="3"
+                       Text="Checksum Address:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-                </StackPanel>
+            <TextBox Grid.Row="7"
+                     Grid.Column="4"
+                     Style="{StaticResource EditorTextBoxStyle}"/>
 
-            </Grid>
+            <!-- Buttons -->
 
-        </GroupBox>
+            <StackPanel Grid.Row="8"
+                        Grid.ColumnSpan="5"
+                        Orientation="Horizontal"
+                        Margin="0,10,0,0">
 
-    </Grid>
+                <Button Content="💾 Save Recipe"
+                        Command="{Binding SaveRecipeCommand}"
+                        Style="{StaticResource PrimaryActionButtonStyle}"/>
+
+                <Button Content="⊘ Cancel"
+                        Command="{Binding CancelRecipeCommand}"
+                        Style="{StaticResource PrimaryActionButtonStyle}"/>
+
+                <!--<Button Content="▶ Read Recipe Info"
+                        Style="{StaticResource PrimaryActionButtonStyle}"/>
+
+                <Button Content="⚡ Download To Equipment"
+                        Style="{StaticResource PrimaryActionButtonStyle}"/>-->
+
+            </StackPanel>
+
+        </Grid>
+
+    </GroupBox>
+
 </UserControl>

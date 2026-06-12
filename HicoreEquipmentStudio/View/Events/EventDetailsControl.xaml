@@ -27,22 +27,26 @@
             </Grid.RowDefinitions>
 
             <!-- Row 1 -->
+
             <TextBlock Text="CEID:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Column="1"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedEvent.CEID}"/>
+                     Text="{Binding EditingEvent.CEID}"/>
 
             <TextBlock Grid.Column="3"
                        Text="Enabled:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <CheckBox Grid.Column="4"
+                      Margin="5,0,0,0"
+                      HorizontalAlignment="Left"
                       VerticalAlignment="Center"
-                      IsChecked="{Binding SelectedEvent.Enabled}"/>
+                      IsChecked="{Binding EditingEvent.Enabled}"/>
 
             <!-- Row 2 -->
+
             <TextBlock Grid.Row="1"
                        Text="Event Name:"
                        Style="{StaticResource EditorLabelStyle}"/>
@@ -50,7 +54,7 @@
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedEvent.EventName}"/>
+                     Text="{Binding EditingEvent.EventName}"/>
 
             <TextBlock Grid.Row="1"
                        Grid.Column="3"
@@ -60,9 +64,10 @@
             <ComboBox Grid.Row="1"
                       Grid.Column="4"
                       Style="{StaticResource EditorComboBoxStyle}"
-                      Text="{Binding SelectedEvent.EventPriority}"/>
+                      SelectedItem="{Binding EditingEvent.EventPriority}"/>
 
             <!-- Row 3 -->
+
             <TextBlock Grid.Row="2"
                        Text="Description:"
                        Style="{StaticResource EditorLabelStyle}"/>
@@ -70,7 +75,7 @@
             <TextBox Grid.Row="2"
                      Grid.Column="1"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedEvent.Description}"/>
+                     Text="{Binding EditingEvent.Description}"/>
 
             <TextBlock Grid.Row="2"
                        Grid.Column="3"
@@ -80,9 +85,10 @@
             <ComboBox Grid.Row="2"
                       Grid.Column="4"
                       Style="{StaticResource EditorComboBoxStyle}"
-                      Text="{Binding SelectedEvent.EventCategory}"/>
+                      SelectedItem="{Binding EditingEvent.EventCategory}"/>
 
             <!-- Row 4 -->
+
             <TextBlock Grid.Row="3"
                        Text="Source Type:"
                        Style="{StaticResource EditorLabelStyle}"/>
@@ -90,7 +96,7 @@
             <ComboBox Grid.Row="3"
                       Grid.Column="1"
                       Style="{StaticResource EditorComboBoxStyle}"
-                      Text="{Binding SelectedEvent.SourceType}"/>
+                      SelectedItem="{Binding EditingEvent.SourceType}"/>
 
             <TextBlock Grid.Row="3"
                        Grid.Column="3"
@@ -100,9 +106,10 @@
             <ComboBox Grid.Row="3"
                       Grid.Column="4"
                       Style="{StaticResource EditorComboBoxStyle}"
-                      Text="{Binding SelectedEvent.AlarmRelated}"/>
+                      SelectedItem="{Binding EditingEvent.AlarmRelated}"/>
 
             <!-- Row 5 -->
+
             <TextBlock Grid.Row="4"
                        Text="Source:"
                        Style="{StaticResource EditorLabelStyle}"/>
@@ -113,31 +120,33 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="8"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"
                          Style="{StaticResource EditorTextBoxStyle}"
-                         Text="{Binding SelectedEvent.SourceAddress}"/>
+                         Text="{Binding EditingEvent.SourceAddress}"/>
 
                 <Button Grid.Column="2"
                         Content="Browse"
                         Style="{StaticResource SecondaryActionButtonStyle}"/>
+
             </Grid>
 
             <TextBlock Grid.Row="4"
                        Grid.Column="3"
-                       Text="Minimum Interval (ms):"
+                       Text="Minimum Interval:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Row="4"
                      Grid.Column="4"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedEvent.MinimumInterval}"/>
+                     Text="{Binding EditingEvent.MinimumInterval}"/>
 
             <!-- Row 6 -->
+
             <TextBlock Grid.Row="5"
-                       Text="Value:"
+                       Text="Trigger Value:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <Grid Grid.Row="5"
@@ -146,30 +155,30 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="90"/>
                     <ColumnDefinition Width="8"/>
-                    <ColumnDefinition Width="31*"/>
-                    <ColumnDefinition Width="91*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <ComboBox Grid.Column="0"
-                          Style="{StaticResource EditorComboBoxStyle}" Margin="0,3,0,3"/>
+                          Style="{StaticResource EditorComboBoxStyle}"/>
 
                 <TextBox Grid.Column="2"
                          Style="{StaticResource EditorTextBoxStyle}"
-                         Text="{Binding SelectedEvent.TriggerCondition}" Grid.ColumnSpan="2" Margin="0,3,0,3"/>
+                         Text="{Binding EditingEvent.TriggerCondition}"/>
 
             </Grid>
 
             <TextBlock Grid.Row="5"
                        Grid.Column="3"
-                       Text="Data 1 (Optional):"
+                       Text="Data 1:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Row="5"
                      Grid.Column="4"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedEvent.Data1}"/>
+                     Text="{Binding EditingEvent.Data1}"/>
 
             <!-- Row 7 -->
+
             <TextBlock Grid.Row="6"
                        Text="Report Type:"
                        Style="{StaticResource EditorLabelStyle}"/>
@@ -177,35 +186,32 @@
             <ComboBox Grid.Row="6"
                       Grid.Column="1"
                       Style="{StaticResource EditorComboBoxStyle}"
-                      Text="{Binding SelectedEvent.ReportType}"/>
+                      SelectedItem="{Binding EditingEvent.ReportType}"/>
 
             <TextBlock Grid.Row="6"
                        Grid.Column="3"
-                       Text="Data 2 (Optional):"
+                       Text="Data 2:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Row="6"
                      Grid.Column="4"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedEvent.Data2}"/>
+                     Text="{Binding EditingEvent.Data2}"/>
 
             <!-- Buttons -->
+
             <StackPanel Grid.Row="7"
                         Grid.ColumnSpan="5"
                         Orientation="Horizontal"
                         Margin="0,10,0,0">
 
                 <Button Content="💾 Save Event"
+                        Command="{Binding SaveEventCommand}"
                         Style="{StaticResource PrimaryActionButtonStyle}"/>
 
                 <Button Content="⊘ Cancel"
-                        Style="{StaticResource SecondaryActionButtonStyle}"/>
-
-                <Button Content="▶ Test Event"
-                        Style="{StaticResource SecondaryActionButtonStyle}"/>
-
-                <Button Content="⚡ Simulate"
-                        Style="{StaticResource DisabledActionButtonStyle}"/>
+                        Command="{Binding CancelEventCommand}"
+                        Style="{StaticResource PrimaryActionButtonStyle}"/>
 
             </StackPanel>
 

@@ -31,7 +31,7 @@
           Margin="10,0,10,10">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
@@ -39,14 +39,14 @@
 
             <Grid Grid.Column="1">
 
-                <Grid.RowDefinitions>
+                <!--<Grid.RowDefinitions>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
+                </Grid.RowDefinitions>-->
 
-                <local:RecipeParameterPreviewControl Grid.Row="0"/>
+                <!--<local:RecipeParameterPreviewControl Grid.Row="0"/>-->
 
-                <local:RecipeTestPreviewControl Grid.Row="1"/>
+                <local:RecipeTestPreviewControl/>
 
             </Grid>
 

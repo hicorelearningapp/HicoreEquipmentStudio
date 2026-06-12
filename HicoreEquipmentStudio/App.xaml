@@ -45,9 +45,9 @@
             <command:CommandMainView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vmm:MappingViewModel}">
+        <!--<DataTemplate DataType="{x:Type vmm:MappingViewModel}">
             <mapping:SVIDMappingControl/>
-        </DataTemplate>
+        </DataTemplate>-->
 
         <!-- ============================= -->
         <!-- Menu Button Style -->
@@ -109,28 +109,13 @@
 
 
         <Style x:Key="ToolbarButtonStyle"
-                TargetType="Button">
+       TargetType="Button">
 
-            <Setter Property="Background"
-            Value="Transparent"/>
-
-            <Setter Property="BorderThickness"
-            Value="0"/>
-
-            <Setter Property="Padding"
-            Value="10,0"/>
-
-            <Setter Property="Height"
-            Value="30"/>
-
-            <Setter Property="Cursor"
-            Value="Hand"/>
-
-            <Setter Property="HorizontalContentAlignment"
-            Value="Center"/>
-
-            <Setter Property="VerticalContentAlignment"
-            Value="Center"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D0D0D0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Cursor" Value="Hand"/>
 
             <Setter Property="Template">
 
@@ -139,7 +124,10 @@
                     <ControlTemplate TargetType="Button">
 
                         <Border x:Name="border"
-                        Background="{TemplateBinding Background}">
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="3">
 
                             <ContentPresenter HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
@@ -153,7 +141,20 @@
 
                                 <Setter TargetName="border"
                                 Property="Background"
-                                Value="#F3F7FD"/>
+                                Value="#F5F9FF"/>
+
+                                <Setter TargetName="border"
+                                Property="BorderBrush"
+                                Value="#2F75B5"/>
+
+                            </Trigger>
+
+                            <Trigger Property="IsPressed"
+                             Value="True">
+
+                                <Setter TargetName="border"
+                                Property="Background"
+                                Value="#DCEBFF"/>
 
                             </Trigger>
 

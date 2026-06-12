@@ -1,4 +1,5 @@
 ﻿using HicoreEquipmentStudio.Commands;
+using HicoreEquipmentStudio.Services;
 using HicoreEquipmentStudio.ViewModel;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -14,6 +15,8 @@ public class ConfigurationViewModel : BaseViewModel
 
     public ICommand CommandsCommand { get; }
     public ICommand MappingCommand { get; }
+
+    public ICommand ExportJsonCommand { get; }
 
     public ConfigurationViewModel()
     {
@@ -34,6 +37,9 @@ public class ConfigurationViewModel : BaseViewModel
 
         MappingCommand =
             new RelayCommand(OpenMapping);
+
+        ExportJsonCommand =
+            new RelayCommand(ExportJsonCommands);
 
 
     }
@@ -66,12 +72,22 @@ public class ConfigurationViewModel : BaseViewModel
     {
         ViewModelStore.Instance.MainViewModel.CurrentViewModel =
             ViewModelStore.Instance.CommandViewModel;
+
     }
 
     private void OpenMapping()
     {
-        ViewModelStore.Instance.MainViewModel.CurrentViewModel =
-            ViewModelStore.Instance.MappingViewModel;
+        //ViewModelStore.Instance.MainViewModel.CurrentViewModel =
+        //    ViewModelStore.Instance.MappingViewModel;
+
     }
+
+    private void ExportJsonCommands()
+    {
+        JsonExportService.Export(
+            ViewModelStore.Instance.GetExportProviders(),
+            @"D:\EquipmentConfig.json");
+    }
+  
 
 }

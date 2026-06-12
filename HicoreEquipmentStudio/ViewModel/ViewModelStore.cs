@@ -11,7 +11,7 @@ using HicoreEquipmentStudio.View.Recipes;
 using HicoreEquipmentStudio.ViewModel.Recipes;
 using HicoreEquipmentStudio.ViewModel.Commands;
 using HicoreEquipmentStudio.ViewModel.Mapping;
-
+using HicoreEquipmentStudio.Interfaces;
 namespace HicoreEquipmentStudio.ViewModel
 {
     public sealed class ViewModelStore
@@ -33,7 +33,11 @@ namespace HicoreEquipmentStudio.ViewModel
         public RecipeViewModel RecipeViewModel { get; } 
 
         public CommandViewModel CommandViewModel { get; }
-        public MappingViewModel MappingViewModel { get; }
+
+        //public MappingViewModel MappingViewModel { get; }
+
+        public EquipmentInfoViewModel EquipmentInfoViewModel { get; }
+
         private ViewModelStore()
         {
             VariableViewModel = new VariableViewModel();
@@ -47,7 +51,10 @@ namespace HicoreEquipmentStudio.ViewModel
             RecipeViewModel = new RecipeViewModel();
 
             CommandViewModel = new CommandViewModel();
-            MappingViewModel = new MappingViewModel();
+
+            //MappingViewModel = new MappingViewModel();
+
+            EquipmentInfoViewModel = new EquipmentInfoViewModel();
         }
 
         public void Initialize()
@@ -57,7 +64,9 @@ namespace HicoreEquipmentStudio.ViewModel
             InitVM(EventViewModel);
             InitVM(RecipeViewModel);
             InitVM(CommandViewModel);
-            InitVM(MappingViewModel);
+            InitVM(EquipmentInfoViewModel);
+            //InitVM(MappingViewModel);
+
         }
 
         private void InitVM(BaseViewModel vm)
@@ -70,6 +79,19 @@ namespace HicoreEquipmentStudio.ViewModel
             {
                 // Log Error
             }
+        }
+
+        public IEnumerable<IJsonSectionProvider> GetExportProviders()
+        {
+            return new IJsonSectionProvider[]
+            {
+                EquipmentInfoViewModel,
+                VariableViewModel,
+                AlarmViewModel,
+                EventViewModel,
+                RecipeViewModel,
+                CommandViewModel
+            };
         }
     }
 }

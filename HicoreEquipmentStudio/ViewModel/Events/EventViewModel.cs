@@ -1,20 +1,32 @@
-﻿using HicoreEquipmentStudio.Models;
+﻿using HicoreEquipmentStudio.Commands;
+using HicoreEquipmentStudio.Interfaces;
+using HicoreEquipmentStudio.Models;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace HicoreEquipmentStudio.ViewModel.Events
 {
-    public class EventViewModel : BaseViewModel
+    public class EventViewModel : BaseViewModel, IJsonSectionProvider
     {
         private EventModel _selectedEvent;
+        private EventModel _editingEvent;
+
         private string _searchText;
         private string _lastOccurredTime;
         private string _currentValue;
         private string _eventStatus;
         private string _active;
 
-        public ObservableCollection<EventModel> Events { get; }
+        private bool _isEditMode;
 
+        public ObservableCollection<EventModel> Events { get; }
         public ObservableCollection<EventHistoryModel> EventHistory { get; }
+
+        public ICommand AddEventCommand { get; }
+        public ICommand EditEventCommand { get; }
+        public ICommand DeleteEventCommand { get; }
+        public ICommand SaveEventCommand { get; }
+        public ICommand CancelEventCommand { get; }
 
         public EventModel SelectedEvent
         {
@@ -22,6 +34,16 @@ namespace HicoreEquipmentStudio.ViewModel.Events
             set
             {
                 _selectedEvent = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public EventModel EditingEvent
+        {
+            get => _editingEvent;
+            set
+            {
+                _editingEvent = value;
                 OnPropertyChanged();
             }
         }
@@ -76,138 +98,132 @@ namespace HicoreEquipmentStudio.ViewModel.Events
             }
         }
 
+        public string SectionName => "events";
+
         public EventViewModel()
         {
             Events = new ObservableCollection<EventModel>();
             EventHistory = new ObservableCollection<EventHistoryModel>();
 
-            LoadSampleEvents();
+            AddEventCommand = new RelayCommand(AddEvent);
+            EditEventCommand = new RelayCommand(EditEvent);
+            DeleteEventCommand = new RelayCommand(DeleteEvent);
+            SaveEventCommand = new RelayCommand(SaveEvent);
+            CancelEventCommand = new RelayCommand(CancelEvent);
+
             LoadSampleHistory();
         }
 
-        private void LoadSampleEvents()
+        #region CRUD Operations
+
+        private void AddEvent()
         {
-            Events.Add(new EventModel
+            _isEditMode = false;
+
+            EditingEvent = new EventModel
             {
-                CEID = 3001,
-                EventName = "Process Started",
-                SourceType = "Register",
-                SourceAddress = "40030",
-                TriggerCondition = "= 1",
-                ReportType = "Instant",
-                Enabled = true,
-                Description = "Process cycle has started",
-
-                EventPriority = "Normal",
-                EventCategory = "Process",
-                AlarmRelated = "None",
-                MinimumInterval = 1000
-            });
-
-            Events.Add(new EventModel
-            {
-                CEID = 3002,
-                EventName = "Process Completed",
-                SourceType = "Register",
-                SourceAddress = "40031",
-                TriggerCondition = "= 1",
-                ReportType = "Instant",
-                Enabled = true,
-                Description = "Process cycle completed",
-
-                EventPriority = "Normal",
-                EventCategory = "Process",
-                AlarmRelated = "None",
-                MinimumInterval = 1000
-            });
-
-            Events.Add(new EventModel
-            {
-                CEID = 3003,
-                EventName = "Process Aborted",
-                SourceType = "Register",
-                SourceAddress = "40032",
-                TriggerCondition = "= 1",
-                ReportType = "Instant",
-                Enabled = true,
-                Description = "Process aborted by equipment",
-
-                EventPriority = "High",
-                EventCategory = "Process",
-                AlarmRelated = "None",
-                MinimumInterval = 1000
-            });
-
-            Events.Add(new EventModel
-            {
-                CEID = 3004,
-                EventName = "Recipe Loaded",
-                SourceType = "Register",
-                SourceAddress = "40033",
-                TriggerCondition = "= 1",
-                ReportType = "Instant",
-                Enabled = true,
-                Description = "New recipe loaded",
-
-                EventPriority = "Normal",
-                EventCategory = "Recipe",
-                AlarmRelated = "None",
-                MinimumInterval = 1000
-            });
-
-            SelectedEvent = Events[0];
+                Enabled = true
+            };
         }
+
+        private void EditEvent()
+        {
+            if (SelectedEvent == null)
+                return;
+
+            _isEditMode = true;
+
+            EditingEvent = new EventModel
+            {
+                CEID = SelectedEvent.CEID,
+                EventName = SelectedEvent.EventName,
+                Description = SelectedEvent.Description,
+                SourceType = SelectedEvent.SourceType,
+                SourceAddress = SelectedEvent.SourceAddress,
+                TriggerCondition = SelectedEvent.TriggerCondition,
+                ReportType = SelectedEvent.ReportType,
+                Enabled = SelectedEvent.Enabled,
+
+                EventPriority = SelectedEvent.EventPriority,
+                EventCategory = SelectedEvent.EventCategory,
+                AlarmRelated = SelectedEvent.AlarmRelated,
+                MinimumInterval = SelectedEvent.MinimumInterval,
+                Data1 = SelectedEvent.Data1,
+                Data2 = SelectedEvent.Data2
+            };
+        }
+
+        private void SaveEvent()
+        {
+            if (EditingEvent == null)
+                return;
+
+            if (_isEditMode)
+            {
+                SelectedEvent.CEID = EditingEvent.CEID;
+                SelectedEvent.EventName = EditingEvent.EventName;
+                SelectedEvent.Description = EditingEvent.Description;
+                SelectedEvent.SourceType = EditingEvent.SourceType;
+                SelectedEvent.SourceAddress = EditingEvent.SourceAddress;
+                SelectedEvent.TriggerCondition = EditingEvent.TriggerCondition;
+                SelectedEvent.ReportType = EditingEvent.ReportType;
+                SelectedEvent.Enabled = EditingEvent.Enabled;
+
+                SelectedEvent.EventPriority = EditingEvent.EventPriority;
+                SelectedEvent.EventCategory = EditingEvent.EventCategory;
+                SelectedEvent.AlarmRelated = EditingEvent.AlarmRelated;
+                SelectedEvent.MinimumInterval = EditingEvent.MinimumInterval;
+                SelectedEvent.Data1 = EditingEvent.Data1;
+                SelectedEvent.Data2 = EditingEvent.Data2;
+            }
+            else
+            {
+                Events.Add(EditingEvent);
+                SelectedEvent = EditingEvent;
+            }
+
+            EditingEvent = null;
+            _isEditMode = false;
+
+            OnPropertyChanged(nameof(Events));
+        }
+
+        private void DeleteEvent()
+        {
+            if (SelectedEvent == null)
+                return;
+
+            Events.Remove(SelectedEvent);
+
+            SelectedEvent = null;
+            EditingEvent = null;
+        }
+
+        private void CancelEvent()
+        {
+            EditingEvent = null;
+            _isEditMode = false;
+        }
+
+        #endregion
 
         private void LoadSampleHistory()
         {
-            LastOccurredTime = "20-May-2025 10:22:18 AM";
-            CurrentValue = "0";
-            EventStatus = "Not Triggered";
-            Active = "No";
+            LastOccurredTime = "";
+            CurrentValue = "";
+            EventStatus = "";
+            Active = "";
 
-            EventHistory.Add(new EventHistoryModel
-            {
-                Time = "20-May-2025 09:41:12",
-                Status = "Triggered",
-                Data1 = "-",
-                Data2 = "-"
-            });
-
-            EventHistory.Add(new EventHistoryModel
-            {
-                Time = "20-May-2025 09:40:05",
-                Status = "Triggered",
-                Data1 = "-",
-                Data2 = "-"
-            });
-
-            EventHistory.Add(new EventHistoryModel
-            {
-                Time = "20-May-2025 09:38:10",
-                Status = "Triggered",
-                Data1 = "-",
-                Data2 = "-"
-            });
-
-            EventHistory.Add(new EventHistoryModel
-            {
-                Time = "20-May-2025 09:36:58",
-                Status = "Triggered",
-                Data1 = "-",
-                Data2 = "-"
-            });
-
-            EventHistory.Add(new EventHistoryModel
-            {
-                Time = "20-May-2025 09:35:42",
-                Status = "Triggered",
-                Data1 = "-",
-                Data2 = "-"
-            });
+            EventHistory.Clear();
         }
 
         public override void Initialize()
         {
+        }
+
+        public object GetExportData()
+        {
+            return Events;
         }
     }
 }

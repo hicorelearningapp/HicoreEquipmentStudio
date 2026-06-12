@@ -1,15 +1,31 @@
-﻿using HicoreEquipmentStudio.Models;
+﻿using HicoreEquipmentStudio.Commands;
+using HicoreEquipmentStudio.Interfaces;
+using HicoreEquipmentStudio.Models;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace HicoreEquipmentStudio.ViewModel.Commands
 {
-    public class CommandViewModel : BaseViewModel
+    public class CommandViewModel : BaseViewModel, IJsonSectionProvider
     {
         private CommandModel _selectedCommand;
+        private CommandModel _editingCommand;
+        private bool _isEditMode;
 
-        public ObservableCollection<CommandModel> Commands { get; set; }
+        public ObservableCollection<CommandModel> Commands { get; }
+        public ObservableCollection<CommandHistoryModel> TestHistory { get; }
 
-        public ObservableCollection<CommandHistoryModel> TestHistory { get; set; }
+        #region Commands
+
+        public ICommand AddCommandCommand { get; }
+        public ICommand EditCommandCommand { get; }
+        public ICommand DeleteCommandCommand { get; }
+        public ICommand SaveCommandCommand { get; }
+        public ICommand CancelCommandCommand { get; }
+
+        #endregion
+
+        #region Properties
 
         public CommandModel SelectedCommand
         {
@@ -17,6 +33,27 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             set
             {
                 _selectedCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public CommandModel EditingCommand
+        {
+            get => _editingCommand;
+            set
+            {
+                _editingCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _searchText;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
                 OnPropertyChanged();
             }
         }
@@ -76,93 +113,153 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             }
         }
 
+        public string SectionName => "commands";
+
+        #endregion
+
         public CommandViewModel()
         {
             Commands = new ObservableCollection<CommandModel>();
             TestHistory = new ObservableCollection<CommandHistoryModel>();
 
+            AddCommandCommand =
+                new RelayCommand(AddCommand);
+
+            EditCommandCommand =
+                new RelayCommand(EditCommand);
+
+            DeleteCommandCommand =
+                new RelayCommand(DeleteCommand);
+
+            SaveCommandCommand =
+                new RelayCommand(SaveCommand);
+
+            CancelCommandCommand =
+                new RelayCommand(CancelCommand);
+
             LoadSampleData();
         }
 
+        #region CRUD
+
+        private void AddCommand()
+        {
+            _isEditMode = false;
+
+            EditingCommand = new CommandModel
+            {
+                Enabled = true
+            };
+        }
+
+        private void EditCommand()
+        {
+            if (SelectedCommand == null)
+                return;
+
+            _isEditMode = true;
+
+            EditingCommand = new CommandModel
+            {
+                CommandName = SelectedCommand.CommandName,
+                CommandCode = SelectedCommand.CommandCode,
+                Address = SelectedCommand.Address,
+                DataType = SelectedCommand.DataType,
+                WriteValue = SelectedCommand.WriteValue,
+                ReadbackAddress = SelectedCommand.ReadbackAddress,
+                ReadbackValue = SelectedCommand.ReadbackValue,
+                Category = SelectedCommand.Category,
+                Enabled = SelectedCommand.Enabled,
+                Description = SelectedCommand.Description
+            };
+        }
+
+        private void SaveCommand()
+        {
+            if (EditingCommand == null)
+                return;
+
+            if (_isEditMode)
+            {
+                SelectedCommand.CommandName =
+                    EditingCommand.CommandName;
+
+                SelectedCommand.CommandCode =
+                    EditingCommand.CommandCode;
+
+                SelectedCommand.Address =
+                    EditingCommand.Address;
+
+                SelectedCommand.DataType =
+                    EditingCommand.DataType;
+
+                SelectedCommand.WriteValue =
+                    EditingCommand.WriteValue;
+
+                SelectedCommand.ReadbackAddress =
+                    EditingCommand.ReadbackAddress;
+
+                SelectedCommand.ReadbackValue =
+                    EditingCommand.ReadbackValue;
+
+                SelectedCommand.Category =
+                    EditingCommand.Category;
+
+                SelectedCommand.Enabled =
+                    EditingCommand.Enabled;
+
+                SelectedCommand.Description =
+                    EditingCommand.Description;
+            }
+            else
+            {
+                Commands.Add(EditingCommand);
+                SelectedCommand = EditingCommand;
+            }
+
+            EditingCommand = null;
+            _isEditMode = false;
+
+            OnPropertyChanged(nameof(Commands));
+        }
+
+        private void DeleteCommand()
+        {
+            if (SelectedCommand == null)
+                return;
+
+            Commands.Remove(SelectedCommand);
+
+            SelectedCommand = null;
+            EditingCommand = null;
+        }
+
+        private void CancelCommand()
+        {
+            EditingCommand = null;
+            _isEditMode = false;
+        }
+
+        #endregion
+
         private void LoadSampleData()
         {
-            Commands.Add(new CommandModel
-            {
-                CommandName = "Start",
-                CommandCode = "CMD_START",
-                Address = "00001",
-                DataType = "Bool",
-                WriteValue = "1 (ON)",
-                ReadbackAddress = "10001",
-                ReadbackValue = "1 (ON)",
-                Category = "Control",
-                Enabled = true,
-                Description = "Start the equipment"
-            });
+            LastExecutedTime = "";
+            ExecutionStatus = "";
+            LastWriteValue = "";
+            ReadbackValue = "";
+            Result = "";
 
-            Commands.Add(new CommandModel
-            {
-                CommandName = "Stop",
-                CommandCode = "CMD_STOP",
-                Address = "00002",
-                DataType = "Bool",
-                WriteValue = "1 (ON)",
-                ReadbackAddress = "10002",
-                ReadbackValue = "1 (ON)",
-                Category = "Control",
-                Enabled = true,
-                Description = "Stop the equipment"
-            });
-
-            Commands.Add(new CommandModel
-            {
-                CommandName = "Reset",
-                CommandCode = "CMD_RESET",
-                Address = "00003",
-                DataType = "Bool",
-                WriteValue = "1 (ON)",
-                ReadbackAddress = "10003",
-                ReadbackValue = "1 (ON)",
-                Category = "Control",
-                Enabled = true,
-                Description = "Reset alarms"
-            });
-
-            SelectedCommand = Commands[0];
-
-            LastExecutedTime = "20-May-2025 10:22:18 AM";
-            ExecutionStatus = "Success";
-            LastWriteValue = "1 (ON)";
-            ReadbackValue = "1 (ON)";
-            Result = "Command Executed Successfully";
-
-            TestHistory.Add(new CommandHistoryModel
-            {
-                Time = "20-May-2025 10:22:18",
-                WriteValue = "1 (ON)",
-                ReadbackValue = "1 (ON)",
-                Result = "Success"
-            });
-
-            TestHistory.Add(new CommandHistoryModel
-            {
-                Time = "20-May-2025 10:20:05",
-                WriteValue = "1 (ON)",
-                ReadbackValue = "1 (ON)",
-                Result = "Success"
-            });
-
-            TestHistory.Add(new CommandHistoryModel
-            {
-                Time = "20-May-2025 10:18:42",
-                WriteValue = "1 (ON)",
-                ReadbackValue = "1 (ON)",
-                Result = "Success"
-            });
+            TestHistory.Clear();
         }
 
         public override void Initialize()
         {
+        }
+
+        public object GetExportData()
+        {
+            return Commands;
         }
     }
 }

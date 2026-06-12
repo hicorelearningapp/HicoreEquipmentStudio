@@ -27,12 +27,14 @@
             </Grid.RowDefinitions>
 
             <!-- Row 1 -->
+
             <TextBlock Text="ALID:"
                        Style="{StaticResource EditorLabelStyle}"/>
 
             <TextBox Grid.Column="1"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedAlarm.ALID}"/>
+                     Text="{Binding EditingAlarm.ALID,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Grid.Column="3"
                        Text="Category:"
@@ -40,7 +42,7 @@
 
             <ComboBox Grid.Column="4"
                       Style="{StaticResource EditorComboBoxStyle}"
-                      Text="{Binding SelectedAlarm.Category}"/>
+                      SelectedItem="{Binding EditingAlarm.Category}"/>
 
             <!-- Row 2 -->
 
@@ -51,7 +53,8 @@
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedAlarm.AlarmName}"/>
+                     Text="{Binding EditingAlarm.AlarmName,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Grid.Row="1"
                        Grid.Column="3"
@@ -61,7 +64,7 @@
             <CheckBox Grid.Row="1"
                       Grid.Column="4"
                       VerticalAlignment="Center"
-                      IsChecked="{Binding SelectedAlarm.Enabled}"/>
+                      IsChecked="{Binding EditingAlarm.Enabled}"/>
 
             <!-- Row 3 -->
 
@@ -72,7 +75,8 @@
             <TextBox Grid.Row="2"
                      Grid.Column="1"
                      Style="{StaticResource EditorTextBoxStyle}"
-                     Text="{Binding SelectedAlarm.Description}"/>
+                     Text="{Binding EditingAlarm.Description,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Grid.Row="2"
                        Grid.Column="3"
@@ -92,7 +96,7 @@
             <ComboBox Grid.Row="3"
                       Grid.Column="1"
                       Style="{StaticResource EditorComboBoxStyle}"
-                      Text="{Binding SelectedAlarm.SourceType}"/>
+                      SelectedItem="{Binding EditingAlarm.SourceType}"/>
 
             <TextBlock Grid.Row="3"
                        Grid.Column="3"
@@ -120,7 +124,8 @@
 
                 <TextBox Grid.Column="0"
                          Style="{StaticResource EditorTextBoxStyle}"
-                         Text="{Binding SelectedAlarm.Address}"/>
+                         Text="{Binding EditingAlarm.Address,
+                                        UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Button Grid.Column="2"
                         Content="Browse"
@@ -157,7 +162,8 @@
 
                 <TextBox Grid.Column="2"
                          Style="{StaticResource EditorTextBoxStyle}"
-                         Text="{Binding SelectedAlarm.Condition}"/>
+                         Text="{Binding EditingAlarm.Condition,
+                                        UpdateSourceTrigger=PropertyChanged}"/>
 
             </Grid>
 
@@ -179,7 +185,7 @@
             <ComboBox Grid.Row="6"
                       Grid.Column="1"
                       Style="{StaticResource EditorComboBoxStyle}"
-                      Text="{Binding SelectedAlarm.Severity}"/>
+                      SelectedItem="{Binding EditingAlarm.Severity}"/>
 
             <TextBlock Grid.Row="6"
                        Grid.Column="3"
@@ -198,16 +204,12 @@
                         Margin="0,10,0,0">
 
                 <Button Content="💾 Save Alarm"
+                        Command="{Binding SaveAlarmCommand}"
                         Style="{StaticResource PrimaryActionButtonStyle}"/>
 
                 <Button Content="⊘ Cancel"
-                        Style="{StaticResource SecondaryActionButtonStyle}"/>
-
-                <Button Content="▶ Test Alarm"
-                        Style="{StaticResource SecondaryActionButtonStyle}"/>
-
-                <Button Content="⚡ Simulate"
-                        Style="{StaticResource DisabledActionButtonStyle}"/>
+                        Command="{Binding CancelAlarmCommand}"
+                        Style="{StaticResource PrimaryActionButtonStyle}"/>
 
             </StackPanel>
 

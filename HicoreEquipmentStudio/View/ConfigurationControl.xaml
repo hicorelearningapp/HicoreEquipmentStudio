@@ -15,6 +15,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="20"/>
+
             </Grid.RowDefinitions>
 
             <!-- Header -->
@@ -36,17 +39,6 @@
                           VerticalScrollBarVisibility="Auto">
 
                 <StackPanel>
-
-                    <!-- Equipment Info --><!--
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="📄"
-                                       FontSize="14"
-                                       Width="25"/>
-                            <TextBlock Text="Equipment Info"
-                                       VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Button>-->
 
                     <!-- Selected Item -->
                     <Button Style="{StaticResource MenuButtonStyle}"
@@ -95,7 +87,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource MenuButtonStyle}"
+                    <!--<Button Style="{StaticResource MenuButtonStyle}"
                             Command="{Binding MappingCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="🔗"
@@ -103,29 +95,36 @@
                                        Width="25"/>
                             <TextBlock Text="SECS/GEM Mapping"/>
                         </StackPanel>
-                    </Button>
-
-                    <!--<Button Style="{StaticResource MenuButtonStyle}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="🔍"
-                                       FontSize="14"
-                                       Width="25"/>
-                            <TextBlock Text="Diagnostics"/>
-                        </StackPanel>
-                    </Button>
-
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="📑"
-                                       FontSize="14"
-                                       Width="25"/>
-                            <TextBlock Text="Summary"/>
-                        </StackPanel>
                     </Button>-->
 
                 </StackPanel>
 
             </ScrollViewer>
+
+            <Border Grid.Row="2"
+        Margin="8"
+        CornerRadius="3"
+        Background="#2F75B5">
+
+                <Button Background="Transparent"
+            BorderThickness="0"
+            Foreground="White"
+            FontWeight="SemiBold"
+            Command="{Binding ExportJsonCommand}">
+
+                    <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+
+                        <TextBlock Text="📄"
+                       Margin="0,0,6,0"/>
+
+                        <TextBlock Text="Export Configuration"/>
+
+                    </StackPanel>
+
+                </Button>
+
+            </Border>
 
         </Grid>
 

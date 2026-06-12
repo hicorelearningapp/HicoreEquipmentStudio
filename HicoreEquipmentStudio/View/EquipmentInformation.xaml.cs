@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HicoreEquipmentStudio.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace HicoreEquipmentStudio.View
         public EquipmentInformation()
         {
             InitializeComponent();
+            DataContext = ViewModelStore.Instance.EquipmentInfoViewModel;
         }
     }
 }

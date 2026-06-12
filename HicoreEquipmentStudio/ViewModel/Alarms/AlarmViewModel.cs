@@ -1,17 +1,29 @@
-﻿using HicoreEquipmentStudio.Model;
+﻿using HicoreEquipmentStudio.Commands;
+using HicoreEquipmentStudio.Interfaces;
+using HicoreEquipmentStudio.Model;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace HicoreEquipmentStudio.ViewModel.Alarms
 {
-    public class AlarmViewModel : BaseViewModel
+    public class AlarmViewModel : BaseViewModel, IJsonSectionProvider
     {
         private AlarmModel _selectedAlarm;
+        private AlarmModel _editingAlarm;
+
+        private bool _isEditMode;
 
         private string _searchText;
         private string _lastChangeTime;
         private string _currentValue;
         private string _alarmStatus;
         private string _active;
+
+        public ICommand AddAlarmCommand { get; }
+        public ICommand EditAlarmCommand { get; }
+        public ICommand DeleteAlarmCommand { get; }
+        public ICommand SaveAlarmCommand { get; }
+        public ICommand CancelAlarmCommand { get; }
 
         public ObservableCollection<AlarmModel> Alarms { get; }
 
@@ -23,6 +35,16 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
             set
             {
                 _selectedAlarm = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public AlarmModel EditingAlarm
+        {
+            get => _editingAlarm;
+            set
+            {
+                _editingAlarm = value;
                 OnPropertyChanged();
             }
         }
@@ -77,77 +99,118 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
             }
         }
 
+        public string SectionName => "alarms";
+
         public AlarmViewModel()
         {
             Alarms = new ObservableCollection<AlarmModel>();
             AlarmHistory = new ObservableCollection<AlarmHistoryModel>();
 
-            LoadSampleData();
+            AddAlarmCommand = new RelayCommand(AddAlarm);
+            EditAlarmCommand = new RelayCommand(EditAlarm);
+            DeleteAlarmCommand = new RelayCommand(DeleteAlarm);
+            SaveAlarmCommand = new RelayCommand(SaveAlarm);
+            CancelAlarmCommand = new RelayCommand(CancelAlarm);
+
             LoadSampleHistory();
         }
 
-        private void LoadSampleData()
+        private void AddAlarm()
         {
-            Alarms.Add(new AlarmModel
-            {
-                ALID = 2001,
-                AlarmName = "Heater Fault",
-                SourceType = "Register",
-                Address = "40010",
-                Condition = "= 1",
-                Severity = "Critical",
-                Category = "Equipment",
-                Enabled = true,
-                Description = "Heater over temperature or fault"
-            });
+            _isEditMode = false;
 
-            Alarms.Add(new AlarmModel
-            {
-                ALID = 2002,
-                AlarmName = "Pump Fault",
-                SourceType = "Register",
-                Address = "40011",
-                Condition = "= 1",
-                Severity = "Critical",
-                Category = "Equipment",
-                Enabled = true,
-                Description = "Pump motor fault"
-            });
+            EditingAlarm = new AlarmModel();
+        }
 
-            SelectedAlarm = Alarms[0];
+        private void EditAlarm()
+        {
+            if (SelectedAlarm == null)
+                return;
+
+            _isEditMode = true;
+
+            EditingAlarm = new AlarmModel
+            {
+                ALID = SelectedAlarm.ALID,
+                AlarmName = SelectedAlarm.AlarmName,
+                SourceType = SelectedAlarm.SourceType,
+                Address = SelectedAlarm.Address,
+                Condition = SelectedAlarm.Condition,
+                Severity = SelectedAlarm.Severity,
+                Category = SelectedAlarm.Category,
+                Enabled = SelectedAlarm.Enabled,
+                Description = SelectedAlarm.Description
+            };
+        }
+
+        private void SaveAlarm()
+        {
+            if (EditingAlarm == null)
+                return;
+
+            if (_isEditMode)
+            {
+                SelectedAlarm.ALID = EditingAlarm.ALID;
+                SelectedAlarm.AlarmName = EditingAlarm.AlarmName;
+                SelectedAlarm.SourceType = EditingAlarm.SourceType;
+                SelectedAlarm.Address = EditingAlarm.Address;
+                SelectedAlarm.Condition = EditingAlarm.Condition;
+                SelectedAlarm.Severity = EditingAlarm.Severity;
+                SelectedAlarm.Category = EditingAlarm.Category;
+                SelectedAlarm.Enabled = EditingAlarm.Enabled;
+                SelectedAlarm.Description = EditingAlarm.Description;
+            }
+            else
+            {
+                Alarms.Add(new AlarmModel
+                {
+                    ALID = EditingAlarm.ALID,
+                    AlarmName = EditingAlarm.AlarmName,
+                    SourceType = EditingAlarm.SourceType,
+                    Address = EditingAlarm.Address,
+                    Condition = EditingAlarm.Condition,
+                    Severity = EditingAlarm.Severity,
+                    Category = EditingAlarm.Category,
+                    Enabled = EditingAlarm.Enabled,
+                    Description = EditingAlarm.Description
+                });
+            }
+
+            EditingAlarm = null;
+            _isEditMode = false;
+        }
+
+        private void DeleteAlarm()
+        {
+            if (SelectedAlarm == null)
+                return;
+
+            Alarms.Remove(SelectedAlarm);
+
+            SelectedAlarm = null;
+        }
+
+        private void CancelAlarm()
+        {
+            EditingAlarm = null;
+            _isEditMode = false;
         }
 
         private void LoadSampleHistory()
         {
-            LastChangeTime = "20-May-2025 10:22:18 AM";
-            CurrentValue = "0";
-            AlarmStatus = "Normal";
-            Active = "No";
-
-            AlarmHistory.Add(new AlarmHistoryModel
-            {
-                Time = "20-May-2025 10:15:12",
-                Status = "Cleared",
-                Value = "0"
-            });
-
-            AlarmHistory.Add(new AlarmHistoryModel
-            {
-                Time = "20-May-2025 09:45:08",
-                Status = "Raised",
-                Value = "1"
-            });
-
-            AlarmHistory.Add(new AlarmHistoryModel
-            {
-                Time = "20-May-2025 09:40:03",
-                Status = "Cleared",
-                Value = "0"
-            });
+            LastChangeTime = "--";
+            CurrentValue = "--";
+            AlarmStatus = "--";
+            Active = "--";
         }
 
         public override void Initialize()
         {
+        }
+
+        public object GetExportData()
+        {
+            return Alarms;
         }
     }
 }

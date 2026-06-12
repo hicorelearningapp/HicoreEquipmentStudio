@@ -8,7 +8,7 @@
         <Grid Margin="10">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="130"/>
                 <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="25"/>
                 <ColumnDefinition Width="130"/>
@@ -23,60 +23,169 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="42"/>
+                <RowDefinition Height="45"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Command Name:" Style="{StaticResource EditorLabelStyle}"/>
-            <TextBox Grid.Column="1" Style="{StaticResource EditorTextBoxStyle}"/>
+            <!-- Row 1 -->
 
-            <TextBlock Grid.Column="3" Text="Readback Address:" Style="{StaticResource EditorLabelStyle}"/>
-            <TextBox Grid.Column="4" Style="{StaticResource EditorTextBoxStyle}"/>
+            <TextBlock Text="Command Name:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-            <TextBlock Grid.Row="1" Text="Command Code:" Style="{StaticResource EditorLabelStyle}"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource EditorTextBoxStyle}"/>
+            <TextBox Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingCommand.CommandName,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="3" Text="Readback Value:" Style="{StaticResource EditorLabelStyle}"/>
-            <ComboBox Grid.Row="1" Grid.Column="4" Style="{StaticResource EditorComboBoxStyle}"/>
+            <TextBlock Grid.Column="3"
+                       Text="Readback Address:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-            <TextBlock Grid.Row="2" Text="Category:" Style="{StaticResource EditorLabelStyle}"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource EditorComboBoxStyle}"/>
+            <TextBox Grid.Column="4"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingCommand.ReadbackAddress,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="3" Text="Timeout (ms):" Style="{StaticResource EditorLabelStyle}"/>
-            <TextBox Grid.Row="2" Grid.Column="4" Style="{StaticResource EditorTextBoxStyle}"/>
+            <!-- Row 2 -->
 
-            <TextBlock Grid.Row="3" Text="Description:" Style="{StaticResource EditorLabelStyle}"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource EditorTextBoxStyle}"/>
+            <TextBlock Grid.Row="1"
+                       Text="Command Code:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-            <TextBlock Grid.Row="3" Grid.Column="3" Text="Retry Count:" Style="{StaticResource EditorLabelStyle}"/>
-            <TextBox Grid.Row="3" Grid.Column="4" Style="{StaticResource EditorTextBoxStyle}"/>
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingCommand.CommandCode,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBlock Grid.Row="4" Text="Address / Coil:" Style="{StaticResource EditorLabelStyle}"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource EditorTextBoxStyle}"/>
+            <TextBlock Grid.Row="1"
+                       Grid.Column="3"
+                       Text="Readback Value:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-            <TextBlock Grid.Row="4" Grid.Column="3" Text="Interlock Required:" Style="{StaticResource EditorLabelStyle}"/>
-            <CheckBox Grid.Row="4" Grid.Column="4" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1"
+                     Grid.Column="4"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingCommand.ReadbackValue,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBlock Grid.Row="5" Text="Data Type:" Style="{StaticResource EditorLabelStyle}"/>
-            <ComboBox Grid.Row="5" Grid.Column="1" Style="{StaticResource EditorComboBoxStyle}"/>
+            <!-- Row 3 -->
 
-            <TextBlock Grid.Row="5" Grid.Column="3" Text="Confirmation Required:" Style="{StaticResource EditorLabelStyle}"/>
-            <CheckBox Grid.Row="5" Grid.Column="4" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2"
+                       Text="Category:"
+                       Style="{StaticResource EditorLabelStyle}"/>
 
-            <TextBlock Grid.Row="6" Text="Write Value:" Style="{StaticResource EditorLabelStyle}"/>
-            <ComboBox Grid.Row="6" Grid.Column="1" Style="{StaticResource EditorComboBoxStyle}"/>
+            <ComboBox Grid.Row="2"
+                      Grid.Column="1"
+                      Style="{StaticResource EditorComboBoxStyle}"
+                      Text="{Binding EditingCommand.Category}"/>
 
-            <TextBlock Grid.Row="6" Grid.Column="3" Text="Enabled:" Style="{StaticResource EditorLabelStyle}"/>
-            <CheckBox Grid.Row="6" Grid.Column="4" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2"
+                       Grid.Column="3"
+                       Text="Timeout (ms):"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <TextBox Grid.Row="2"
+                     Grid.Column="4"
+                     Style="{StaticResource EditorTextBoxStyle}"/>
+
+            <!-- Row 4 -->
+
+            <TextBlock Grid.Row="3"
+                       Text="Description:"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingCommand.Description,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Grid.Row="3"
+                       Grid.Column="3"
+                       Text="Retry Count:"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="4"
+                     Style="{StaticResource EditorTextBoxStyle}"/>
+
+            <!-- Row 5 -->
+
+            <TextBlock Grid.Row="4"
+                       Text="Address / Coil:"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <TextBox Grid.Row="4"
+                     Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingCommand.Address,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Grid.Row="4"
+                       Grid.Column="3"
+                       Text="Interlock Required:"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <CheckBox Grid.Row="4"
+                      Grid.Column="4"
+                      VerticalAlignment="Center"/>
+
+            <!-- Row 6 -->
+
+            <TextBlock Grid.Row="5"
+                       Text="Data Type:"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <ComboBox Grid.Row="5"
+                      Grid.Column="1"
+                      Style="{StaticResource EditorComboBoxStyle}"
+                      Text="{Binding EditingCommand.DataType}"/>
+
+            <TextBlock Grid.Row="5"
+                       Grid.Column="3"
+                       Text="Confirmation Required:"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <CheckBox Grid.Row="5"
+                      Grid.Column="4"
+                      VerticalAlignment="Center"/>
+
+            <!-- Row 7 -->
+
+            <TextBlock Grid.Row="6"
+                       Text="Write Value:"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <TextBox Grid.Row="6"
+                     Grid.Column="1"
+                     Style="{StaticResource EditorTextBoxStyle}"
+                     Text="{Binding EditingCommand.WriteValue,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Grid.Row="6"
+                       Grid.Column="3"
+                       Text="Enabled:"
+                       Style="{StaticResource EditorLabelStyle}"/>
+
+            <CheckBox Grid.Row="6"
+                      Grid.Column="4"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding EditingCommand.Enabled}"/>
+
+            <!-- Buttons -->
 
             <StackPanel Grid.Row="7"
                         Grid.ColumnSpan="5"
                         Orientation="Horizontal"
                         Margin="0,10,0,0">
 
-                <Button Content="💾 Save Command" Style="{StaticResource PrimaryActionButtonStyle}"/>
-                <Button Content="⊘ Cancel" Style="{StaticResource PrimaryActionButtonStyle}"/>
-                <Button Content="▶ Test Command" Style="{StaticResource PrimaryActionButtonStyle}"/>
-                <Button Content="⚡ Simulate" Style="{StaticResource PrimaryActionButtonStyle}"/>
+                <Button Content="💾 Save Command"
+                        Command="{Binding SaveCommandCommand}"
+                        Style="{StaticResource PrimaryActionButtonStyle}"/>
+
+                <Button Content="⊘ Cancel"
+                        Command="{Binding CancelCommandCommand}"
+                        Style="{StaticResource PrimaryActionButtonStyle}"/>
 
             </StackPanel>
 
