@@ -1,15 +1,17 @@
 ﻿using HicoreEquipmentStudio.Commands;
+using HicoreEquipmentStudio.Core;
 using HicoreEquipmentStudio.Interfaces;
 using HicoreEquipmentStudio.Model;
-using HicoreEquipmentStudio.Repository;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace HicoreEquipmentStudio.ViewModel.Alarms
 {
-    public class AlarmViewModel : BaseViewModel, IJsonSectionProvider
+    public class AlarmViewModel :
+        BaseViewModel,
+        IJsonSectionProvider
     {
-        private readonly ConfigurationRepository _repository;
+        private readonly EquipmentManager _manager;
 
         private AlarmModel _selectedAlarm;
         private AlarmModel _editingAlarm;
@@ -22,17 +24,28 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
         private string _active;
 
         public ICommand AddAlarmCommand { get; private set; }
+
         public ICommand EditAlarmCommand { get; private set; }
+
         public ICommand DeleteAlarmCommand { get; private set; }
+
         public ICommand SaveAlarmCommand { get; private set; }
+
         public ICommand CancelAlarmCommand { get; private set; }
 
         public ObservableCollection<AlarmModel> Alarms
         {
-            get { return _repository.Alarms; }
+            get
+            {
+                return _manager.Alarms;
+            }
         }
 
-        public ObservableCollection<AlarmHistoryModel> AlarmHistory { get; private set; }
+        public ObservableCollection<AlarmHistoryModel> AlarmHistory
+        {
+            get;
+            private set;
+        }
 
         public string SectionName
         {
@@ -109,17 +122,28 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
             }
         }
 
-        public AlarmViewModel(ConfigurationRepository repository)
+        public AlarmViewModel(
+            EquipmentManager manager)
         {
-            _repository = repository;
+            _manager = manager;
 
-            AlarmHistory = new ObservableCollection<AlarmHistoryModel>();
+            AlarmHistory =
+                new ObservableCollection<AlarmHistoryModel>();
 
-            AddAlarmCommand = new RelayCommand(AddAlarm);
-            EditAlarmCommand = new RelayCommand(EditAlarm);
-            DeleteAlarmCommand = new RelayCommand(DeleteAlarm);
-            SaveAlarmCommand = new RelayCommand(SaveAlarm);
-            CancelAlarmCommand = new RelayCommand(CancelAlarm);
+            AddAlarmCommand =
+                new RelayCommand(AddAlarm);
+
+            EditAlarmCommand =
+                new RelayCommand(EditAlarm);
+
+            DeleteAlarmCommand =
+                new RelayCommand(DeleteAlarm);
+
+            SaveAlarmCommand =
+                new RelayCommand(SaveAlarm);
+
+            CancelAlarmCommand =
+                new RelayCommand(CancelAlarm);
 
             LoadSampleHistory();
         }
@@ -128,7 +152,10 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
         {
             _isEditMode = false;
 
-            EditingAlarm = new AlarmModel();
+            EditingAlarm = new AlarmModel
+            {
+                Enabled = true
+            };
         }
 
         private void EditAlarm()
@@ -171,18 +198,23 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
             }
             else
             {
-                _repository.Alarms.Add(new AlarmModel
-                {
-                    ALID = EditingAlarm.ALID,
-                    AlarmName = EditingAlarm.AlarmName,
-                    SourceType = EditingAlarm.SourceType,
-                    Address = EditingAlarm.Address,
-                    Condition = EditingAlarm.Condition,
-                    Severity = EditingAlarm.Severity,
-                    Category = EditingAlarm.Category,
-                    Enabled = EditingAlarm.Enabled,
-                    Description = EditingAlarm.Description
-                });
+                AlarmModel alarm =
+                    new AlarmModel
+                    {
+                        ALID = EditingAlarm.ALID,
+                        AlarmName = EditingAlarm.AlarmName,
+                        SourceType = EditingAlarm.SourceType,
+                        Address = EditingAlarm.Address,
+                        Condition = EditingAlarm.Condition,
+                        Severity = EditingAlarm.Severity,
+                        Category = EditingAlarm.Category,
+                        Enabled = EditingAlarm.Enabled,
+                        Description = EditingAlarm.Description
+                    };
+
+                _manager.Alarms.Add(alarm);
+
+                SelectedAlarm = alarm;
             }
 
             EditingAlarm = null;
@@ -194,7 +226,8 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
             if (SelectedAlarm == null)
                 return;
 
-            _repository.Alarms.Remove(SelectedAlarm);
+            _manager.Alarms.Remove(
+                SelectedAlarm);
 
             SelectedAlarm = null;
         }
@@ -219,7 +252,7 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
 
         public object GetExportData()
         {
-            return _repository.Alarms;
+            return _manager.Alarms;
         }
     }
 }

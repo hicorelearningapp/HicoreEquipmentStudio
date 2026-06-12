@@ -1,15 +1,17 @@
 ﻿using HicoreEquipmentStudio.Commands;
+using HicoreEquipmentStudio.Core;
 using HicoreEquipmentStudio.Interfaces;
 using HicoreEquipmentStudio.Models;
-using HicoreEquipmentStudio.Repository;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace HicoreEquipmentStudio.ViewModel.Variable
 {
-    public class VariableViewModel : BaseViewModel, IJsonSectionProvider
+    public class VariableViewModel :
+        BaseViewModel,
+        IJsonSectionProvider
     {
-        private readonly ConfigurationRepository _repository;
+        private readonly EquipmentManager _manager;
 
         private VariableModel _selectedVariable;
         private VariableModel _editingVariable;
@@ -22,17 +24,28 @@ namespace HicoreEquipmentStudio.ViewModel.Variable
         private string _status;
 
         public ICommand AddVariableCommand { get; private set; }
+
         public ICommand EditVariableCommand { get; private set; }
+
         public ICommand DeleteVariableCommand { get; private set; }
+
         public ICommand SaveVariableCommand { get; private set; }
+
         public ICommand CancelCommand { get; private set; }
 
         public ObservableCollection<VariableModel> Variables
         {
-            get { return _repository.Variables; }
+            get
+            {
+                return _manager.Variables;
+            }
         }
 
-        public ObservableCollection<ReadHistoryModel> ReadHistory { get; private set; }
+        public ObservableCollection<ReadHistoryModel> ReadHistory
+        {
+            get;
+            private set;
+        }
 
         public VariableModel SelectedVariable
         {
@@ -99,17 +112,28 @@ namespace HicoreEquipmentStudio.ViewModel.Variable
             get { return "variables"; }
         }
 
-        public VariableViewModel(ConfigurationRepository repository)
+        public VariableViewModel(
+            EquipmentManager manager)
         {
-            _repository = repository;
+            _manager = manager;
 
-            ReadHistory = new ObservableCollection<ReadHistoryModel>();
+            ReadHistory =
+                new ObservableCollection<ReadHistoryModel>();
 
-            AddVariableCommand = new RelayCommand(AddVariable);
-            EditVariableCommand = new RelayCommand(EditVariable);
-            DeleteVariableCommand = new RelayCommand(DeleteVariable);
-            SaveVariableCommand = new RelayCommand(SaveVariable);
-            CancelCommand = new RelayCommand(Cancel);
+            AddVariableCommand =
+                new RelayCommand(AddVariable);
+
+            EditVariableCommand =
+                new RelayCommand(EditVariable);
+
+            DeleteVariableCommand =
+                new RelayCommand(DeleteVariable);
+
+            SaveVariableCommand =
+                new RelayCommand(SaveVariable);
+
+            CancelCommand =
+                new RelayCommand(Cancel);
 
             LoadSampleHistory();
         }
@@ -149,30 +173,52 @@ namespace HicoreEquipmentStudio.ViewModel.Variable
 
             if (_isEditMode)
             {
-                SelectedVariable.Name = EditingVariable.Name;
-                SelectedVariable.Address = EditingVariable.Address;
-                SelectedVariable.DataType = EditingVariable.DataType;
-                SelectedVariable.Category = EditingVariable.Category;
-                SelectedVariable.Access = EditingVariable.Access;
-                SelectedVariable.PollInterval = EditingVariable.PollInterval;
-                SelectedVariable.SVID = EditingVariable.SVID;
-                SelectedVariable.Units = EditingVariable.Units;
-                SelectedVariable.Description = EditingVariable.Description;
+                SelectedVariable.Name =
+                    EditingVariable.Name;
+
+                SelectedVariable.Address =
+                    EditingVariable.Address;
+
+                SelectedVariable.DataType =
+                    EditingVariable.DataType;
+
+                SelectedVariable.Category =
+                    EditingVariable.Category;
+
+                SelectedVariable.Access =
+                    EditingVariable.Access;
+
+                SelectedVariable.PollInterval =
+                    EditingVariable.PollInterval;
+
+                SelectedVariable.SVID =
+                    EditingVariable.SVID;
+
+                SelectedVariable.Units =
+                    EditingVariable.Units;
+
+                SelectedVariable.Description =
+                    EditingVariable.Description;
             }
             else
             {
-                _repository.Variables.Add(new VariableModel
-                {
-                    Name = EditingVariable.Name,
-                    Address = EditingVariable.Address,
-                    DataType = EditingVariable.DataType,
-                    Category = EditingVariable.Category,
-                    Access = EditingVariable.Access,
-                    PollInterval = EditingVariable.PollInterval,
-                    SVID = EditingVariable.SVID,
-                    Units = EditingVariable.Units,
-                    Description = EditingVariable.Description
-                });
+                VariableModel variable =
+                    new VariableModel
+                    {
+                        Name = EditingVariable.Name,
+                        Address = EditingVariable.Address,
+                        DataType = EditingVariable.DataType,
+                        Category = EditingVariable.Category,
+                        Access = EditingVariable.Access,
+                        PollInterval = EditingVariable.PollInterval,
+                        SVID = EditingVariable.SVID,
+                        Units = EditingVariable.Units,
+                        Description = EditingVariable.Description
+                    };
+
+                _manager.Variables.Add(variable);
+
+                SelectedVariable = variable;
             }
 
             EditingVariable = null;
@@ -184,7 +230,8 @@ namespace HicoreEquipmentStudio.ViewModel.Variable
             if (SelectedVariable == null)
                 return;
 
-            _repository.Variables.Remove(SelectedVariable);
+            _manager.Variables.Remove(
+                SelectedVariable);
 
             SelectedVariable = null;
         }
@@ -208,7 +255,7 @@ namespace HicoreEquipmentStudio.ViewModel.Variable
 
         public object GetExportData()
         {
-            return _repository.Variables;
+            return _manager.Variables;
         }
     }
 }

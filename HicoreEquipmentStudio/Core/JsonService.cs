@@ -1,16 +1,14 @@
-﻿using HicoreEquipmentStudio.Model;
-using HicoreEquipmentStudio.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.IO;
 
-namespace HicoreEquipmentStudio.Services
+namespace HicoreEquipmentStudio.Core
 {
     public class JsonService
     {
-        public bool Save(
+        public bool Save<T>(
             string filePath,
-            EquipmentConfiguration configuration,
+            T data,
             out string errorMessage)
         {
             errorMessage = string.Empty;
@@ -28,7 +26,7 @@ namespace HicoreEquipmentStudio.Services
 
                 string json =
                     JsonConvert.SerializeObject(
-                        configuration,
+                        data,
                         Formatting.Indented);
 
                 File.WriteAllText(filePath, json);
@@ -42,9 +40,10 @@ namespace HicoreEquipmentStudio.Services
             }
         }
 
-        public EquipmentConfiguration Load(
-            string filePath,
-            out string errorMessage)
+        public T Load<T>(
+    string filePath,
+    out string errorMessage)
+    where T : new()
         {
             errorMessage = string.Empty;
 
@@ -52,20 +51,27 @@ namespace HicoreEquipmentStudio.Services
             {
                 if (!File.Exists(filePath))
                 {
-                    return new EquipmentConfiguration();
+                    return new T();
                 }
 
-                string json = File.ReadAllText(filePath);
+                string json =
+                    File.ReadAllText(filePath);
 
-                EquipmentConfiguration configuration =
-                    JsonConvert.DeserializeObject<EquipmentConfiguration>(json);
+                T result =
+                    JsonConvert.DeserializeObject<T>(json);
 
-                return configuration ?? new EquipmentConfiguration();
+                if (result == null)
+                {
+                    return new T();
+                }
+
+                return result;
             }
             catch (Exception ex)
             {
                 errorMessage = ex.Message;
-                return new EquipmentConfiguration();
+
+                return new T();
             }
         }
     }

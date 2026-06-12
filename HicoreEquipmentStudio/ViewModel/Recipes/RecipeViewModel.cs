@@ -1,15 +1,17 @@
 ﻿using HicoreEquipmentStudio.Commands;
+using HicoreEquipmentStudio.Core;
 using HicoreEquipmentStudio.Interfaces;
 using HicoreEquipmentStudio.Models;
-using HicoreEquipmentStudio.Repository;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace HicoreEquipmentStudio.ViewModel.Recipes
 {
-    public class RecipeViewModel : BaseViewModel, IJsonSectionProvider
+    public class RecipeViewModel :
+        BaseViewModel,
+        IJsonSectionProvider
     {
-        private readonly ConfigurationRepository _repository;
+        private readonly EquipmentManager _manager;
 
         private RecipeModel _selectedRecipe;
         private RecipeModel _editingRecipe;
@@ -19,17 +21,25 @@ namespace HicoreEquipmentStudio.ViewModel.Recipes
         private string _searchText;
 
         public ICommand AddRecipeCommand { get; private set; }
+
         public ICommand EditRecipeCommand { get; private set; }
+
         public ICommand DeleteRecipeCommand { get; private set; }
+
         public ICommand SaveRecipeCommand { get; private set; }
+
         public ICommand CancelRecipeCommand { get; private set; }
 
         public ObservableCollection<RecipeModel> Recipes
         {
-            get { return _repository.Recipes; }
+            get { return _manager.Recipes; }
         }
 
-        public ObservableCollection<RecipeParameterModel> Parameters { get; private set; }
+        public ObservableCollection<RecipeParameterModel> Parameters
+        {
+            get;
+            private set;
+        }
 
         public RecipeModel SelectedRecipe
         {
@@ -74,11 +84,13 @@ namespace HicoreEquipmentStudio.ViewModel.Recipes
             get { return "recipes"; }
         }
 
-        public RecipeViewModel(ConfigurationRepository repository)
+        public RecipeViewModel(
+            EquipmentManager manager)
         {
-            _repository = repository;
+            _manager = manager;
 
-            Parameters = new ObservableCollection<RecipeParameterModel>();
+            Parameters =
+                new ObservableCollection<RecipeParameterModel>();
 
             LoadParameters();
 
@@ -87,11 +99,20 @@ namespace HicoreEquipmentStudio.ViewModel.Recipes
             ParameterCount = 0;
             Checksum = "--";
 
-            AddRecipeCommand = new RelayCommand(AddRecipe);
-            EditRecipeCommand = new RelayCommand(EditRecipe);
-            DeleteRecipeCommand = new RelayCommand(DeleteRecipe);
-            SaveRecipeCommand = new RelayCommand(SaveRecipe);
-            CancelRecipeCommand = new RelayCommand(CancelRecipe);
+            AddRecipeCommand =
+                new RelayCommand(AddRecipe);
+
+            EditRecipeCommand =
+                new RelayCommand(EditRecipe);
+
+            DeleteRecipeCommand =
+                new RelayCommand(DeleteRecipe);
+
+            SaveRecipeCommand =
+                new RelayCommand(SaveRecipe);
+
+            CancelRecipeCommand =
+                new RelayCommand(CancelRecipe);
         }
 
         private void AddRecipe()
@@ -133,30 +154,50 @@ namespace HicoreEquipmentStudio.ViewModel.Recipes
 
             if (_isEditMode)
             {
-                _originalRecipe.RecipeID = EditingRecipe.RecipeID;
-                _originalRecipe.RecipeName = EditingRecipe.RecipeName;
-                _originalRecipe.Description = EditingRecipe.Description;
-                _originalRecipe.DataSourceType = EditingRecipe.DataSourceType;
-                _originalRecipe.Address = EditingRecipe.Address;
-                _originalRecipe.DataFormat = EditingRecipe.DataFormat;
-                _originalRecipe.ParameterCount = EditingRecipe.ParameterCount;
-                _originalRecipe.Enabled = EditingRecipe.Enabled;
+                _originalRecipe.RecipeID =
+                    EditingRecipe.RecipeID;
+
+                _originalRecipe.RecipeName =
+                    EditingRecipe.RecipeName;
+
+                _originalRecipe.Description =
+                    EditingRecipe.Description;
+
+                _originalRecipe.DataSourceType =
+                    EditingRecipe.DataSourceType;
+
+                _originalRecipe.Address =
+                    EditingRecipe.Address;
+
+                _originalRecipe.DataFormat =
+                    EditingRecipe.DataFormat;
+
+                _originalRecipe.ParameterCount =
+                    EditingRecipe.ParameterCount;
+
+                _originalRecipe.Enabled =
+                    EditingRecipe.Enabled;
 
                 OnPropertyChanged(nameof(Recipes));
             }
             else
             {
-                _repository.Recipes.Add(new RecipeModel
-                {
-                    RecipeID = EditingRecipe.RecipeID,
-                    RecipeName = EditingRecipe.RecipeName,
-                    Description = EditingRecipe.Description,
-                    DataSourceType = EditingRecipe.DataSourceType,
-                    Address = EditingRecipe.Address,
-                    DataFormat = EditingRecipe.DataFormat,
-                    ParameterCount = EditingRecipe.ParameterCount,
-                    Enabled = EditingRecipe.Enabled
-                });
+                RecipeModel recipe =
+                    new RecipeModel
+                    {
+                        RecipeID = EditingRecipe.RecipeID,
+                        RecipeName = EditingRecipe.RecipeName,
+                        Description = EditingRecipe.Description,
+                        DataSourceType = EditingRecipe.DataSourceType,
+                        Address = EditingRecipe.Address,
+                        DataFormat = EditingRecipe.DataFormat,
+                        ParameterCount = EditingRecipe.ParameterCount,
+                        Enabled = EditingRecipe.Enabled
+                    };
+
+                _manager.Recipes.Add(recipe);
+
+                SelectedRecipe = recipe;
             }
 
             EditingRecipe = null;
@@ -168,12 +209,18 @@ namespace HicoreEquipmentStudio.ViewModel.Recipes
             if (SelectedRecipe == null)
                 return;
 
-            _repository.Recipes.Remove(SelectedRecipe);
+            _manager.Recipes.Remove(
+                SelectedRecipe);
 
-            if (_repository.Recipes.Count > 0)
-                SelectedRecipe = _repository.Recipes[0];
+            if (_manager.Recipes.Count > 0)
+            {
+                SelectedRecipe =
+                    _manager.Recipes[0];
+            }
             else
+            {
                 SelectedRecipe = null;
+            }
         }
 
         private void CancelRecipe()
@@ -221,7 +268,7 @@ namespace HicoreEquipmentStudio.ViewModel.Recipes
 
         public object GetExportData()
         {
-            return _repository.Recipes;
+            return _manager.Recipes;
         }
     }
 }

@@ -108,6 +108,10 @@
     <Compile Include="Controls\CommonToolbarControl.xaml.cs">
       <DependentUpon>CommonToolbarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\EquipmentConfiguration.cs" />
+    <Compile Include="Core\EquipmentManager.cs" />
+    <Compile Include="Core\JsonExportService.cs" />
+    <Compile Include="Core\JsonService.cs" />
     <Compile Include="Interfaces\IJsonSectionProvider.cs" />
     <Compile Include="Model\AlarmHistoryModel.cs" />
     <Compile Include="Model\AlarmModel.cs" />
@@ -121,13 +125,9 @@
     <Compile Include="Model\RecipeModel.cs" />
     <Compile Include="Model\RecipeParameterModel.cs" />
     <Compile Include="Model\VariableModel.cs" />
-    <Compile Include="Repository\ConfigurationRepository.cs" />
-    <Compile Include="Services\JsonExportService.cs" />
-    <Compile Include="Services\JsonService.cs" />
     <Compile Include="ViewModel\Alarms\AlarmViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Commands\CommandViewModel.cs" />
-    <Compile Include="ViewModel\ConfigurationItemViewModel.cs" />
     <Compile Include="ViewModel\ConfigurationViewModel.cs" />
     <Compile Include="ViewModel\EquipmentInfoViewModel.cs" />
     <Compile Include="ViewModel\Events\EventViewModel.cs" />

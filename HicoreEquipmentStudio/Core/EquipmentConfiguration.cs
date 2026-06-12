@@ -1,15 +1,16 @@
-﻿using HicoreEquipmentStudio.Models;
+﻿using HicoreEquipmentStudio.Model;
+using HicoreEquipmentStudio.Models;
 using System.Collections.Generic;
 
-namespace HicoreEquipmentStudio.Model
+namespace HicoreEquipmentStudio.Core
 {
     public class EquipmentConfiguration
     {
         public EquipmentInfoModel EquipmentInfo { get; set; }
 
-        public List<AlarmModel> Alarms { get; set; }
-
         public List<VariableModel> Variables { get; set; }
+
+        public List<AlarmModel> Alarms { get; set; }
 
         public List<EventModel> Events { get; set; }
 
@@ -21,8 +22,8 @@ namespace HicoreEquipmentStudio.Model
         {
             EquipmentInfo = new EquipmentInfoModel();
 
-            Alarms = new List<AlarmModel>();
             Variables = new List<VariableModel>();
+            Alarms = new List<AlarmModel>();
             Events = new List<EventModel>();
             Commands = new List<CommandModel>();
             Recipes = new List<RecipeModel>();

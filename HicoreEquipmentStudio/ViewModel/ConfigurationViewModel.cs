@@ -1,5 +1,5 @@
 ﻿using HicoreEquipmentStudio.Commands;
-using HicoreEquipmentStudio.Services;
+using HicoreEquipmentStudio.Core;
 using HicoreEquipmentStudio.ViewModel;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -84,10 +84,21 @@ public class ConfigurationViewModel : BaseViewModel
 
     private void ExportJsonCommands()
     {
-        JsonExportService.Export(
-            ViewModelStore.Instance.GetExportProviders(),
-            @"D:\EquipmentConfig.json");
+        JsonService jsonService =
+            new JsonService();
+
+        string errorMessage;
+
+        bool result =
+            jsonService.Save(
+                @"C:\Equipment\Config\Equipment.json",
+                ViewModelStore.Instance
+                    .EquipmentManager
+                    .ToConfiguration(),
+                out errorMessage);
+
+       
     }
-  
+
 
 }

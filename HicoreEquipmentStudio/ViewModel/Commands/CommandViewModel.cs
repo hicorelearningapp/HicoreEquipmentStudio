@@ -1,33 +1,50 @@
 ﻿using HicoreEquipmentStudio.Commands;
+using HicoreEquipmentStudio.Core;
 using HicoreEquipmentStudio.Interfaces;
 using HicoreEquipmentStudio.Models;
-using HicoreEquipmentStudio.Repository;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace HicoreEquipmentStudio.ViewModel.Commands
 {
-    public class CommandViewModel : BaseViewModel, IJsonSectionProvider
+    public class CommandViewModel :
+        BaseViewModel,
+        IJsonSectionProvider
     {
-        private readonly ConfigurationRepository _repository;
+        private readonly EquipmentManager _manager;
 
         private CommandModel _selectedCommand;
         private CommandModel _editingCommand;
         private bool _isEditMode;
 
+        private string _searchText;
+        private string _lastExecutedTime;
+        private string _executionStatus;
+        private string _lastWriteValue;
+        private string _readbackValue;
+        private string _result;
+
         public ObservableCollection<CommandModel> Commands
         {
-            get { return _repository.Commands; }
+            get { return _manager.Commands; }
         }
 
-        public ObservableCollection<CommandHistoryModel> TestHistory { get; private set; }
+        public ObservableCollection<CommandHistoryModel> TestHistory
+        {
+            get;
+            private set;
+        }
 
         #region Commands
 
         public ICommand AddCommandCommand { get; private set; }
+
         public ICommand EditCommandCommand { get; private set; }
+
         public ICommand DeleteCommandCommand { get; private set; }
+
         public ICommand SaveCommandCommand { get; private set; }
+
         public ICommand CancelCommandCommand { get; private set; }
 
         #endregion
@@ -54,7 +71,6 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             }
         }
 
-        private string _searchText;
         public string SearchText
         {
             get { return _searchText; }
@@ -65,7 +81,6 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             }
         }
 
-        private string _lastExecutedTime;
         public string LastExecutedTime
         {
             get { return _lastExecutedTime; }
@@ -76,7 +91,6 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             }
         }
 
-        private string _executionStatus;
         public string ExecutionStatus
         {
             get { return _executionStatus; }
@@ -87,7 +101,6 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             }
         }
 
-        private string _lastWriteValue;
         public string LastWriteValue
         {
             get { return _lastWriteValue; }
@@ -98,7 +111,6 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             }
         }
 
-        private string _readbackValue;
         public string ReadbackValue
         {
             get { return _readbackValue; }
@@ -109,7 +121,6 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             }
         }
 
-        private string _result;
         public string Result
         {
             get { return _result; }
@@ -127,17 +138,28 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
 
         #endregion
 
-        public CommandViewModel(ConfigurationRepository repository)
+        public CommandViewModel(
+            EquipmentManager manager)
         {
-            _repository = repository;
+            _manager = manager;
 
-            TestHistory = new ObservableCollection<CommandHistoryModel>();
+            TestHistory =
+                new ObservableCollection<CommandHistoryModel>();
 
-            AddCommandCommand = new RelayCommand(AddCommand);
-            EditCommandCommand = new RelayCommand(EditCommand);
-            DeleteCommandCommand = new RelayCommand(DeleteCommand);
-            SaveCommandCommand = new RelayCommand(SaveCommand);
-            CancelCommandCommand = new RelayCommand(CancelCommand);
+            AddCommandCommand =
+                new RelayCommand(AddCommand);
+
+            EditCommandCommand =
+                new RelayCommand(EditCommand);
+
+            DeleteCommandCommand =
+                new RelayCommand(DeleteCommand);
+
+            SaveCommandCommand =
+                new RelayCommand(SaveCommand);
+
+            CancelCommandCommand =
+                new RelayCommand(CancelCommand);
 
             LoadSampleData();
         }
@@ -181,40 +203,60 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
 
             if (_isEditMode)
             {
-                SelectedCommand.CommandName = EditingCommand.CommandName;
-                SelectedCommand.CommandCode = EditingCommand.CommandCode;
-                SelectedCommand.Address = EditingCommand.Address;
-                SelectedCommand.DataType = EditingCommand.DataType;
-                SelectedCommand.WriteValue = EditingCommand.WriteValue;
-                SelectedCommand.ReadbackAddress = EditingCommand.ReadbackAddress;
-                SelectedCommand.ReadbackValue = EditingCommand.ReadbackValue;
-                SelectedCommand.Category = EditingCommand.Category;
-                SelectedCommand.Enabled = EditingCommand.Enabled;
-                SelectedCommand.Description = EditingCommand.Description;
+                SelectedCommand.CommandName =
+                    EditingCommand.CommandName;
+
+                SelectedCommand.CommandCode =
+                    EditingCommand.CommandCode;
+
+                SelectedCommand.Address =
+                    EditingCommand.Address;
+
+                SelectedCommand.DataType =
+                    EditingCommand.DataType;
+
+                SelectedCommand.WriteValue =
+                    EditingCommand.WriteValue;
+
+                SelectedCommand.ReadbackAddress =
+                    EditingCommand.ReadbackAddress;
+
+                SelectedCommand.ReadbackValue =
+                    EditingCommand.ReadbackValue;
+
+                SelectedCommand.Category =
+                    EditingCommand.Category;
+
+                SelectedCommand.Enabled =
+                    EditingCommand.Enabled;
+
+                SelectedCommand.Description =
+                    EditingCommand.Description;
             }
             else
             {
-                _repository.Commands.Add(new CommandModel
-                {
-                    CommandName = EditingCommand.CommandName,
-                    CommandCode = EditingCommand.CommandCode,
-                    Address = EditingCommand.Address,
-                    DataType = EditingCommand.DataType,
-                    WriteValue = EditingCommand.WriteValue,
-                    ReadbackAddress = EditingCommand.ReadbackAddress,
-                    ReadbackValue = EditingCommand.ReadbackValue,
-                    Category = EditingCommand.Category,
-                    Enabled = EditingCommand.Enabled,
-                    Description = EditingCommand.Description
-                });
+                CommandModel command =
+                    new CommandModel
+                    {
+                        CommandName = EditingCommand.CommandName,
+                        CommandCode = EditingCommand.CommandCode,
+                        Address = EditingCommand.Address,
+                        DataType = EditingCommand.DataType,
+                        WriteValue = EditingCommand.WriteValue,
+                        ReadbackAddress = EditingCommand.ReadbackAddress,
+                        ReadbackValue = EditingCommand.ReadbackValue,
+                        Category = EditingCommand.Category,
+                        Enabled = EditingCommand.Enabled,
+                        Description = EditingCommand.Description
+                    };
 
-                SelectedCommand = EditingCommand;
+                _manager.Commands.Add(command);
+
+                SelectedCommand = command;
             }
 
             EditingCommand = null;
             _isEditMode = false;
-
-            OnPropertyChanged(nameof(Commands));
         }
 
         private void DeleteCommand()
@@ -222,7 +264,8 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             if (SelectedCommand == null)
                 return;
 
-            _repository.Commands.Remove(SelectedCommand);
+            _manager.Commands.Remove(
+                SelectedCommand);
 
             SelectedCommand = null;
             EditingCommand = null;
@@ -251,7 +294,7 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
 
         public object GetExportData()
         {
-            return _repository.Commands;
+            return _manager.Commands;
         }
     }
 }

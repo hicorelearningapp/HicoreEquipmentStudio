@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using HicoreEquipmentStudio.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
-using HicoreEquipmentStudio.Interfaces;
+using System.Threading.Tasks;
 
-namespace HicoreEquipmentStudio.Services
+namespace HicoreEquipmentStudio.Core
 {
     public static class JsonExportService
     {

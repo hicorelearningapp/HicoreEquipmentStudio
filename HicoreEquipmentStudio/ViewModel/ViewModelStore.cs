@@ -1,9 +1,8 @@
-﻿using HicoreEquipmentStudio.Interfaces;
-using HicoreEquipmentStudio.Repository;
+﻿using HicoreEquipmentStudio.Core;
+using HicoreEquipmentStudio.Interfaces;
 using HicoreEquipmentStudio.ViewModel.Alarms;
 using HicoreEquipmentStudio.ViewModel.Commands;
 using HicoreEquipmentStudio.ViewModel.Events;
-using HicoreEquipmentStudio.ViewModel.Mapping;
 using HicoreEquipmentStudio.ViewModel.Recipes;
 using HicoreEquipmentStudio.ViewModel.Variable;
 using System;
@@ -21,54 +20,55 @@ namespace HicoreEquipmentStudio.ViewModel
             get { return _instance.Value; }
         }
 
-        private readonly ConfigurationRepository _repository;
+        public EquipmentManager EquipmentManager { get; private set; }
 
-        public MainViewModel MainViewModel { get; }
+        public MainViewModel MainViewModel { get; private set; }
 
-        public VariableViewModel VariableViewModel { get; }
+        public EquipmentInfoViewModel EquipmentInfoViewModel { get; private set; }
 
-        public AlarmViewModel AlarmViewModel { get; }
+        public VariableViewModel VariableViewModel { get; private set; }
 
-        public EventViewModel EventViewModel { get; }
+        public AlarmViewModel AlarmViewModel { get; private set; }
 
-        public RecipeViewModel RecipeViewModel { get; }
+        public EventViewModel EventViewModel { get; private set; }
 
-        public CommandViewModel CommandViewModel { get; }
+        public RecipeViewModel RecipeViewModel { get; private set; }
 
-        public EquipmentInfoViewModel EquipmentInfoViewModel { get; }
+        public CommandViewModel CommandViewModel { get; private set; }
 
         private ViewModelStore()
         {
-            _repository = new ConfigurationRepository();
-
-            VariableViewModel = new VariableViewModel(_repository);
-
-            AlarmViewModel = new AlarmViewModel(_repository);
-
-            EventViewModel = new EventViewModel(_repository);
-
-            RecipeViewModel = new RecipeViewModel(_repository);
-
-            CommandViewModel = new CommandViewModel(_repository);
-
-            EquipmentInfoViewModel = new EquipmentInfoViewModel();
+            EquipmentManager = new EquipmentManager();
 
             MainViewModel = new MainViewModel();
-        }
 
-        public ConfigurationRepository Repository
-        {
-            get { return _repository; }
+            EquipmentInfoViewModel =
+                new EquipmentInfoViewModel(EquipmentManager);
+
+            VariableViewModel =
+                new VariableViewModel(EquipmentManager);
+
+            AlarmViewModel =
+                new AlarmViewModel(EquipmentManager);
+
+            EventViewModel =
+                new EventViewModel(EquipmentManager);
+
+            RecipeViewModel =
+                new RecipeViewModel(EquipmentManager);
+
+            CommandViewModel =
+                new CommandViewModel(EquipmentManager);
         }
 
         public void Initialize()
         {
+            InitVM(EquipmentInfoViewModel);
             InitVM(VariableViewModel);
             InitVM(AlarmViewModel);
             InitVM(EventViewModel);
             InitVM(RecipeViewModel);
             InitVM(CommandViewModel);
-            InitVM(EquipmentInfoViewModel);
         }
 
         private void InitVM(BaseViewModel vm)
@@ -80,9 +80,9 @@ namespace HicoreEquipmentStudio.ViewModel
                     vm.Initialize();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // Log Error
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
 

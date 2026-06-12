@@ -1,15 +1,17 @@
 ﻿using HicoreEquipmentStudio.Commands;
+using HicoreEquipmentStudio.Core;
 using HicoreEquipmentStudio.Interfaces;
 using HicoreEquipmentStudio.Models;
-using HicoreEquipmentStudio.Repository;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace HicoreEquipmentStudio.ViewModel.Events
 {
-    public class EventViewModel : BaseViewModel, IJsonSectionProvider
+    public class EventViewModel :
+        BaseViewModel,
+        IJsonSectionProvider
     {
-        private readonly ConfigurationRepository _repository;
+        private readonly EquipmentManager _manager;
 
         private EventModel _selectedEvent;
         private EventModel _editingEvent;
@@ -30,10 +32,17 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 
         public ObservableCollection<EventModel> Events
         {
-            get { return _repository.Events; }
+            get
+            {
+                return _manager.Events;
+            }
         }
 
-        public ObservableCollection<EventHistoryModel> EventHistory { get; private set; }
+        public ObservableCollection<EventHistoryModel> EventHistory
+        {
+            get;
+            private set;
+        }
 
         public EventModel SelectedEvent
         {
@@ -110,22 +119,31 @@ namespace HicoreEquipmentStudio.ViewModel.Events
             get { return "events"; }
         }
 
-        public EventViewModel(ConfigurationRepository repository)
+        public EventViewModel(
+            EquipmentManager manager)
         {
-            _repository = repository;
+            _manager = manager;
 
-            EventHistory = new ObservableCollection<EventHistoryModel>();
+            EventHistory =
+                new ObservableCollection<EventHistoryModel>();
 
-            AddEventCommand = new RelayCommand(AddEvent);
-            EditEventCommand = new RelayCommand(EditEvent);
-            DeleteEventCommand = new RelayCommand(DeleteEvent);
-            SaveEventCommand = new RelayCommand(SaveEvent);
-            CancelEventCommand = new RelayCommand(CancelEvent);
+            AddEventCommand =
+                new RelayCommand(AddEvent);
+
+            EditEventCommand =
+                new RelayCommand(EditEvent);
+
+            DeleteEventCommand =
+                new RelayCommand(DeleteEvent);
+
+            SaveEventCommand =
+                new RelayCommand(SaveEvent);
+
+            CancelEventCommand =
+                new RelayCommand(CancelEvent);
 
             LoadSampleHistory();
         }
-
-        #region CRUD Operations
 
         private void AddEvent()
         {
@@ -189,24 +207,29 @@ namespace HicoreEquipmentStudio.ViewModel.Events
             }
             else
             {
-                _repository.Events.Add(new EventModel
-                {
-                    CEID = EditingEvent.CEID,
-                    EventName = EditingEvent.EventName,
-                    Description = EditingEvent.Description,
-                    SourceType = EditingEvent.SourceType,
-                    SourceAddress = EditingEvent.SourceAddress,
-                    TriggerCondition = EditingEvent.TriggerCondition,
-                    ReportType = EditingEvent.ReportType,
-                    Enabled = EditingEvent.Enabled,
+                EventModel evt =
+                    new EventModel
+                    {
+                        CEID = EditingEvent.CEID,
+                        EventName = EditingEvent.EventName,
+                        Description = EditingEvent.Description,
+                        SourceType = EditingEvent.SourceType,
+                        SourceAddress = EditingEvent.SourceAddress,
+                        TriggerCondition = EditingEvent.TriggerCondition,
+                        ReportType = EditingEvent.ReportType,
+                        Enabled = EditingEvent.Enabled,
 
-                    EventPriority = EditingEvent.EventPriority,
-                    EventCategory = EditingEvent.EventCategory,
-                    AlarmRelated = EditingEvent.AlarmRelated,
-                    MinimumInterval = EditingEvent.MinimumInterval,
-                    Data1 = EditingEvent.Data1,
-                    Data2 = EditingEvent.Data2
-                });
+                        EventPriority = EditingEvent.EventPriority,
+                        EventCategory = EditingEvent.EventCategory,
+                        AlarmRelated = EditingEvent.AlarmRelated,
+                        MinimumInterval = EditingEvent.MinimumInterval,
+                        Data1 = EditingEvent.Data1,
+                        Data2 = EditingEvent.Data2
+                    };
+
+                _manager.Events.Add(evt);
+
+                SelectedEvent = evt;
             }
 
             EditingEvent = null;
@@ -218,7 +241,8 @@ namespace HicoreEquipmentStudio.ViewModel.Events
             if (SelectedEvent == null)
                 return;
 
-            _repository.Events.Remove(SelectedEvent);
+            _manager.Events.Remove(
+                SelectedEvent);
 
             SelectedEvent = null;
             EditingEvent = null;
@@ -229,8 +253,6 @@ namespace HicoreEquipmentStudio.ViewModel.Events
             EditingEvent = null;
             _isEditMode = false;
         }
-
-        #endregion
 
         private void LoadSampleHistory()
         {
@@ -248,7 +270,7 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 
         public object GetExportData()
         {
-            return _repository.Events;
+            return _manager.Events;
         }
     }
 }
