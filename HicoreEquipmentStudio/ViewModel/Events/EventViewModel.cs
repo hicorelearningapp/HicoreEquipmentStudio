@@ -1,6 +1,7 @@
 ﻿using HicoreEquipmentStudio.Commands;
 using HicoreEquipmentStudio.Interfaces;
 using HicoreEquipmentStudio.Models;
+using HicoreEquipmentStudio.Repository;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -8,6 +9,8 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 {
     public class EventViewModel : BaseViewModel, IJsonSectionProvider
     {
+        private readonly ConfigurationRepository _repository;
+
         private EventModel _selectedEvent;
         private EventModel _editingEvent;
 
@@ -19,18 +22,22 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 
         private bool _isEditMode;
 
-        public ObservableCollection<EventModel> Events { get; }
-        public ObservableCollection<EventHistoryModel> EventHistory { get; }
+        public ICommand AddEventCommand { get; private set; }
+        public ICommand EditEventCommand { get; private set; }
+        public ICommand DeleteEventCommand { get; private set; }
+        public ICommand SaveEventCommand { get; private set; }
+        public ICommand CancelEventCommand { get; private set; }
 
-        public ICommand AddEventCommand { get; }
-        public ICommand EditEventCommand { get; }
-        public ICommand DeleteEventCommand { get; }
-        public ICommand SaveEventCommand { get; }
-        public ICommand CancelEventCommand { get; }
+        public ObservableCollection<EventModel> Events
+        {
+            get { return _repository.Events; }
+        }
+
+        public ObservableCollection<EventHistoryModel> EventHistory { get; private set; }
 
         public EventModel SelectedEvent
         {
-            get => _selectedEvent;
+            get { return _selectedEvent; }
             set
             {
                 _selectedEvent = value;
@@ -40,7 +47,7 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 
         public EventModel EditingEvent
         {
-            get => _editingEvent;
+            get { return _editingEvent; }
             set
             {
                 _editingEvent = value;
@@ -50,7 +57,7 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 
         public string SearchText
         {
-            get => _searchText;
+            get { return _searchText; }
             set
             {
                 _searchText = value;
@@ -60,7 +67,7 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 
         public string LastOccurredTime
         {
-            get => _lastOccurredTime;
+            get { return _lastOccurredTime; }
             set
             {
                 _lastOccurredTime = value;
@@ -70,7 +77,7 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 
         public string CurrentValue
         {
-            get => _currentValue;
+            get { return _currentValue; }
             set
             {
                 _currentValue = value;
@@ -80,7 +87,7 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 
         public string EventStatus
         {
-            get => _eventStatus;
+            get { return _eventStatus; }
             set
             {
                 _eventStatus = value;
@@ -90,7 +97,7 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 
         public string Active
         {
-            get => _active;
+            get { return _active; }
             set
             {
                 _active = value;
@@ -98,11 +105,15 @@ namespace HicoreEquipmentStudio.ViewModel.Events
             }
         }
 
-        public string SectionName => "events";
-
-        public EventViewModel()
+        public string SectionName
         {
-            Events = new ObservableCollection<EventModel>();
+            get { return "events"; }
+        }
+
+        public EventViewModel(ConfigurationRepository repository)
+        {
+            _repository = repository;
+
             EventHistory = new ObservableCollection<EventHistoryModel>();
 
             AddEventCommand = new RelayCommand(AddEvent);
@@ -178,14 +189,28 @@ namespace HicoreEquipmentStudio.ViewModel.Events
             }
             else
             {
-                Events.Add(EditingEvent);
-                SelectedEvent = EditingEvent;
+                _repository.Events.Add(new EventModel
+                {
+                    CEID = EditingEvent.CEID,
+                    EventName = EditingEvent.EventName,
+                    Description = EditingEvent.Description,
+                    SourceType = EditingEvent.SourceType,
+                    SourceAddress = EditingEvent.SourceAddress,
+                    TriggerCondition = EditingEvent.TriggerCondition,
+                    ReportType = EditingEvent.ReportType,
+                    Enabled = EditingEvent.Enabled,
+
+                    EventPriority = EditingEvent.EventPriority,
+                    EventCategory = EditingEvent.EventCategory,
+                    AlarmRelated = EditingEvent.AlarmRelated,
+                    MinimumInterval = EditingEvent.MinimumInterval,
+                    Data1 = EditingEvent.Data1,
+                    Data2 = EditingEvent.Data2
+                });
             }
 
             EditingEvent = null;
             _isEditMode = false;
-
-            OnPropertyChanged(nameof(Events));
         }
 
         private void DeleteEvent()
@@ -193,7 +218,7 @@ namespace HicoreEquipmentStudio.ViewModel.Events
             if (SelectedEvent == null)
                 return;
 
-            Events.Remove(SelectedEvent);
+            _repository.Events.Remove(SelectedEvent);
 
             SelectedEvent = null;
             EditingEvent = null;
@@ -209,10 +234,10 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 
         private void LoadSampleHistory()
         {
-            LastOccurredTime = "";
-            CurrentValue = "";
-            EventStatus = "";
-            Active = "";
+            LastOccurredTime = "--";
+            CurrentValue = "--";
+            EventStatus = "--";
+            Active = "--";
 
             EventHistory.Clear();
         }
@@ -223,7 +248,7 @@ namespace HicoreEquipmentStudio.ViewModel.Events
 
         public object GetExportData()
         {
-            return Events;
+            return _repository.Events;
         }
     }
 }

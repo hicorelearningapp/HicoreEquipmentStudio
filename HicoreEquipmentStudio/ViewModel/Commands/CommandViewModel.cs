@@ -1,6 +1,7 @@
 ﻿using HicoreEquipmentStudio.Commands;
 using HicoreEquipmentStudio.Interfaces;
 using HicoreEquipmentStudio.Models;
+using HicoreEquipmentStudio.Repository;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -8,20 +9,26 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
 {
     public class CommandViewModel : BaseViewModel, IJsonSectionProvider
     {
+        private readonly ConfigurationRepository _repository;
+
         private CommandModel _selectedCommand;
         private CommandModel _editingCommand;
         private bool _isEditMode;
 
-        public ObservableCollection<CommandModel> Commands { get; }
-        public ObservableCollection<CommandHistoryModel> TestHistory { get; }
+        public ObservableCollection<CommandModel> Commands
+        {
+            get { return _repository.Commands; }
+        }
+
+        public ObservableCollection<CommandHistoryModel> TestHistory { get; private set; }
 
         #region Commands
 
-        public ICommand AddCommandCommand { get; }
-        public ICommand EditCommandCommand { get; }
-        public ICommand DeleteCommandCommand { get; }
-        public ICommand SaveCommandCommand { get; }
-        public ICommand CancelCommandCommand { get; }
+        public ICommand AddCommandCommand { get; private set; }
+        public ICommand EditCommandCommand { get; private set; }
+        public ICommand DeleteCommandCommand { get; private set; }
+        public ICommand SaveCommandCommand { get; private set; }
+        public ICommand CancelCommandCommand { get; private set; }
 
         #endregion
 
@@ -29,7 +36,7 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
 
         public CommandModel SelectedCommand
         {
-            get => _selectedCommand;
+            get { return _selectedCommand; }
             set
             {
                 _selectedCommand = value;
@@ -39,7 +46,7 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
 
         public CommandModel EditingCommand
         {
-            get => _editingCommand;
+            get { return _editingCommand; }
             set
             {
                 _editingCommand = value;
@@ -50,7 +57,7 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
         private string _searchText;
         public string SearchText
         {
-            get => _searchText;
+            get { return _searchText; }
             set
             {
                 _searchText = value;
@@ -61,7 +68,7 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
         private string _lastExecutedTime;
         public string LastExecutedTime
         {
-            get => _lastExecutedTime;
+            get { return _lastExecutedTime; }
             set
             {
                 _lastExecutedTime = value;
@@ -72,7 +79,7 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
         private string _executionStatus;
         public string ExecutionStatus
         {
-            get => _executionStatus;
+            get { return _executionStatus; }
             set
             {
                 _executionStatus = value;
@@ -83,7 +90,7 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
         private string _lastWriteValue;
         public string LastWriteValue
         {
-            get => _lastWriteValue;
+            get { return _lastWriteValue; }
             set
             {
                 _lastWriteValue = value;
@@ -94,7 +101,7 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
         private string _readbackValue;
         public string ReadbackValue
         {
-            get => _readbackValue;
+            get { return _readbackValue; }
             set
             {
                 _readbackValue = value;
@@ -105,7 +112,7 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
         private string _result;
         public string Result
         {
-            get => _result;
+            get { return _result; }
             set
             {
                 _result = value;
@@ -113,34 +120,27 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             }
         }
 
-        public string SectionName => "commands";
+        public string SectionName
+        {
+            get { return "commands"; }
+        }
 
         #endregion
 
-        public CommandViewModel()
+        public CommandViewModel(ConfigurationRepository repository)
         {
-            Commands = new ObservableCollection<CommandModel>();
+            _repository = repository;
+
             TestHistory = new ObservableCollection<CommandHistoryModel>();
 
-            AddCommandCommand =
-                new RelayCommand(AddCommand);
-
-            EditCommandCommand =
-                new RelayCommand(EditCommand);
-
-            DeleteCommandCommand =
-                new RelayCommand(DeleteCommand);
-
-            SaveCommandCommand =
-                new RelayCommand(SaveCommand);
-
-            CancelCommandCommand =
-                new RelayCommand(CancelCommand);
+            AddCommandCommand = new RelayCommand(AddCommand);
+            EditCommandCommand = new RelayCommand(EditCommand);
+            DeleteCommandCommand = new RelayCommand(DeleteCommand);
+            SaveCommandCommand = new RelayCommand(SaveCommand);
+            CancelCommandCommand = new RelayCommand(CancelCommand);
 
             LoadSampleData();
         }
-
-        #region CRUD
 
         private void AddCommand()
         {
@@ -181,39 +181,33 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
 
             if (_isEditMode)
             {
-                SelectedCommand.CommandName =
-                    EditingCommand.CommandName;
-
-                SelectedCommand.CommandCode =
-                    EditingCommand.CommandCode;
-
-                SelectedCommand.Address =
-                    EditingCommand.Address;
-
-                SelectedCommand.DataType =
-                    EditingCommand.DataType;
-
-                SelectedCommand.WriteValue =
-                    EditingCommand.WriteValue;
-
-                SelectedCommand.ReadbackAddress =
-                    EditingCommand.ReadbackAddress;
-
-                SelectedCommand.ReadbackValue =
-                    EditingCommand.ReadbackValue;
-
-                SelectedCommand.Category =
-                    EditingCommand.Category;
-
-                SelectedCommand.Enabled =
-                    EditingCommand.Enabled;
-
-                SelectedCommand.Description =
-                    EditingCommand.Description;
+                SelectedCommand.CommandName = EditingCommand.CommandName;
+                SelectedCommand.CommandCode = EditingCommand.CommandCode;
+                SelectedCommand.Address = EditingCommand.Address;
+                SelectedCommand.DataType = EditingCommand.DataType;
+                SelectedCommand.WriteValue = EditingCommand.WriteValue;
+                SelectedCommand.ReadbackAddress = EditingCommand.ReadbackAddress;
+                SelectedCommand.ReadbackValue = EditingCommand.ReadbackValue;
+                SelectedCommand.Category = EditingCommand.Category;
+                SelectedCommand.Enabled = EditingCommand.Enabled;
+                SelectedCommand.Description = EditingCommand.Description;
             }
             else
             {
-                Commands.Add(EditingCommand);
+                _repository.Commands.Add(new CommandModel
+                {
+                    CommandName = EditingCommand.CommandName,
+                    CommandCode = EditingCommand.CommandCode,
+                    Address = EditingCommand.Address,
+                    DataType = EditingCommand.DataType,
+                    WriteValue = EditingCommand.WriteValue,
+                    ReadbackAddress = EditingCommand.ReadbackAddress,
+                    ReadbackValue = EditingCommand.ReadbackValue,
+                    Category = EditingCommand.Category,
+                    Enabled = EditingCommand.Enabled,
+                    Description = EditingCommand.Description
+                });
+
                 SelectedCommand = EditingCommand;
             }
 
@@ -228,7 +222,7 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             if (SelectedCommand == null)
                 return;
 
-            Commands.Remove(SelectedCommand);
+            _repository.Commands.Remove(SelectedCommand);
 
             SelectedCommand = null;
             EditingCommand = null;
@@ -240,15 +234,13 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
             _isEditMode = false;
         }
 
-        #endregion
-
         private void LoadSampleData()
         {
-            LastExecutedTime = "";
-            ExecutionStatus = "";
-            LastWriteValue = "";
-            ReadbackValue = "";
-            Result = "";
+            LastExecutedTime = "--";
+            ExecutionStatus = "--";
+            LastWriteValue = "--";
+            ReadbackValue = "--";
+            Result = "--";
 
             TestHistory.Clear();
         }
@@ -259,7 +251,7 @@ namespace HicoreEquipmentStudio.ViewModel.Commands
 
         public object GetExportData()
         {
-            return Commands;
+            return _repository.Commands;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using HicoreEquipmentStudio.Commands;
 using HicoreEquipmentStudio.Interfaces;
 using HicoreEquipmentStudio.Model;
+using HicoreEquipmentStudio.Repository;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -8,9 +9,10 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
 {
     public class AlarmViewModel : BaseViewModel, IJsonSectionProvider
     {
+        private readonly ConfigurationRepository _repository;
+
         private AlarmModel _selectedAlarm;
         private AlarmModel _editingAlarm;
-
         private bool _isEditMode;
 
         private string _searchText;
@@ -19,19 +21,27 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
         private string _alarmStatus;
         private string _active;
 
-        public ICommand AddAlarmCommand { get; }
-        public ICommand EditAlarmCommand { get; }
-        public ICommand DeleteAlarmCommand { get; }
-        public ICommand SaveAlarmCommand { get; }
-        public ICommand CancelAlarmCommand { get; }
+        public ICommand AddAlarmCommand { get; private set; }
+        public ICommand EditAlarmCommand { get; private set; }
+        public ICommand DeleteAlarmCommand { get; private set; }
+        public ICommand SaveAlarmCommand { get; private set; }
+        public ICommand CancelAlarmCommand { get; private set; }
 
-        public ObservableCollection<AlarmModel> Alarms { get; }
+        public ObservableCollection<AlarmModel> Alarms
+        {
+            get { return _repository.Alarms; }
+        }
 
-        public ObservableCollection<AlarmHistoryModel> AlarmHistory { get; }
+        public ObservableCollection<AlarmHistoryModel> AlarmHistory { get; private set; }
+
+        public string SectionName
+        {
+            get { return "alarms"; }
+        }
 
         public AlarmModel SelectedAlarm
         {
-            get => _selectedAlarm;
+            get { return _selectedAlarm; }
             set
             {
                 _selectedAlarm = value;
@@ -41,7 +51,7 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
 
         public AlarmModel EditingAlarm
         {
-            get => _editingAlarm;
+            get { return _editingAlarm; }
             set
             {
                 _editingAlarm = value;
@@ -51,7 +61,7 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
 
         public string SearchText
         {
-            get => _searchText;
+            get { return _searchText; }
             set
             {
                 _searchText = value;
@@ -61,7 +71,7 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
 
         public string LastChangeTime
         {
-            get => _lastChangeTime;
+            get { return _lastChangeTime; }
             set
             {
                 _lastChangeTime = value;
@@ -71,7 +81,7 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
 
         public string CurrentValue
         {
-            get => _currentValue;
+            get { return _currentValue; }
             set
             {
                 _currentValue = value;
@@ -81,7 +91,7 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
 
         public string AlarmStatus
         {
-            get => _alarmStatus;
+            get { return _alarmStatus; }
             set
             {
                 _alarmStatus = value;
@@ -91,7 +101,7 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
 
         public string Active
         {
-            get => _active;
+            get { return _active; }
             set
             {
                 _active = value;
@@ -99,11 +109,10 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
             }
         }
 
-        public string SectionName => "alarms";
-
-        public AlarmViewModel()
+        public AlarmViewModel(ConfigurationRepository repository)
         {
-            Alarms = new ObservableCollection<AlarmModel>();
+            _repository = repository;
+
             AlarmHistory = new ObservableCollection<AlarmHistoryModel>();
 
             AddAlarmCommand = new RelayCommand(AddAlarm);
@@ -162,7 +171,7 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
             }
             else
             {
-                Alarms.Add(new AlarmModel
+                _repository.Alarms.Add(new AlarmModel
                 {
                     ALID = EditingAlarm.ALID,
                     AlarmName = EditingAlarm.AlarmName,
@@ -185,7 +194,7 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
             if (SelectedAlarm == null)
                 return;
 
-            Alarms.Remove(SelectedAlarm);
+            _repository.Alarms.Remove(SelectedAlarm);
 
             SelectedAlarm = null;
         }
@@ -210,7 +219,7 @@ namespace HicoreEquipmentStudio.ViewModel.Alarms
 
         public object GetExportData()
         {
-            return Alarms;
+            return _repository.Alarms;
         }
     }
 }
