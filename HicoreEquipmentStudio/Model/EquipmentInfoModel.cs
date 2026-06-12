@@ -1,6 +1,6 @@
-﻿using HicoreEquipmentStudio.ViewModel;
+﻿using HiCore.EquipmentFramework.Config.ViewModel;
 
-namespace HicoreEquipmentStudio.Models
+namespace HiCore.EquipmentFramework.Config.Models
 {
     public class EquipmentInfoModel : BaseViewModel
     {

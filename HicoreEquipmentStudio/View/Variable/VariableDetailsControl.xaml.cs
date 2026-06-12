@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HicoreEquipmentStudio.View.Variable
+namespace HiCore.EquipmentFramework.Config.View.Variable
 {
     /// <summary>
     /// Interaction logic for VariableDetailsControl.xaml

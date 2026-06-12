@@ -1,4 +1,4 @@
-﻿using HicoreEquipmentStudio.ViewModel;
+﻿using HiCore.EquipmentFramework.Config.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HicoreEquipmentStudio
+namespace HiCore.EquipmentFramework.Config
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

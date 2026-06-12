@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="HicoreEquipmentStudio.View.Mapping.EventMappingGridControl"
+﻿<UserControl x:Class="HiCore.EquipmentFramework.Config.View.Mapping.EventMappingGridControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 

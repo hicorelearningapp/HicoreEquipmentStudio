@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace HicoreEquipmentStudio.Core
+namespace HiCore.EquipmentFramework.Config.Core
 {
     public class JsonService
     {

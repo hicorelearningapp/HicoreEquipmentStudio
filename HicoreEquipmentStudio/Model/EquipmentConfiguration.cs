@@ -1,7 +1,7 @@
-﻿using HicoreEquipmentStudio.Models;
+﻿using HiCore.EquipmentFramework.Config.Models;
 using System.Collections.Generic;
 
-namespace HicoreEquipmentStudio.Model
+namespace HiCore.EquipmentFramework.Config.Model
 {
     public class EquipmentConfiguration
     {

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HicoreEquipmentStudio.View.Alarms
+namespace HiCore.EquipmentFramework.Config.View.Alarms
 {
     /// <summary>
     /// Interaction logic for AlarmPreviewControl.xaml

@@ -1,14 +1,14 @@
-﻿using HicoreEquipmentStudio.Core;
-using HicoreEquipmentStudio.Interfaces;
-using HicoreEquipmentStudio.ViewModel.Alarms;
-using HicoreEquipmentStudio.ViewModel.Commands;
-using HicoreEquipmentStudio.ViewModel.Events;
-using HicoreEquipmentStudio.ViewModel.Recipes;
-using HicoreEquipmentStudio.ViewModel.Variable;
+﻿using HiCore.EquipmentFramework.Config.Core;
+using HiCore.EquipmentFramework.Config.Interfaces;
+using HiCore.EquipmentFramework.Config.ViewModel.Alarms;
+using HiCore.EquipmentFramework.Config.ViewModel.Commands;
+using HiCore.EquipmentFramework.Config.ViewModel.Events;
+using HiCore.EquipmentFramework.Config.ViewModel.Recipes;
+using HiCore.EquipmentFramework.Config.ViewModel.Variable;
 using System;
 using System.Collections.Generic;
 
-namespace HicoreEquipmentStudio.ViewModel
+namespace HiCore.EquipmentFramework.Config.ViewModel
 {
     public sealed class ViewModelStore
     {

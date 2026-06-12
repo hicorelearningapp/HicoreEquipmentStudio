@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HicoreEquipmentStudio.Controls
+namespace HiCore.EquipmentFramework.Config.Controls
 {
     /// <summary>
     /// Interaction logic for CommonToolbarControl.xaml

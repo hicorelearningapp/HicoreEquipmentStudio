@@ -1,11 +1,11 @@
-﻿using HicoreEquipmentStudio.Commands;
-using HicoreEquipmentStudio.Core;
-using HicoreEquipmentStudio.Interfaces;
-using HicoreEquipmentStudio.Models;
+﻿using HiCore.EquipmentFramework.Config.Commands;
+using HiCore.EquipmentFramework.Config.Core;
+using HiCore.EquipmentFramework.Config.Interfaces;
+using HiCore.EquipmentFramework.Config.Models;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-namespace HicoreEquipmentStudio.ViewModel.Variable
+namespace HiCore.EquipmentFramework.Config.ViewModel.Variable
 {
     public class VariableViewModel :
         BaseViewModel,

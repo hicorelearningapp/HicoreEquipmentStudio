@@ -1,21 +1,21 @@
-﻿<Application x:Class="HicoreEquipmentStudio.App"
+﻿<Application x:Class="HiCore.EquipmentFramework.Config.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 
-             xmlns:layout="clr-namespace:HicoreEquipmentStudio.View.Variable"
-             xmlns:alarm="clr-namespace:HicoreEquipmentStudio.View.Alarms"
-             xmlns:event="clr-namespace:HicoreEquipmentStudio.View.Events"
-             xmlns:recipe="clr-namespace:HicoreEquipmentStudio.View.Recipes"
-             xmlns:command="clr-namespace:HicoreEquipmentStudio.View.Commands"
-             xmlns:mapping="clr-namespace:HicoreEquipmentStudio.View.Mapping"
+             xmlns:layout="clr-namespace:HiCore.EquipmentFramework.Config.View.Variable"
+             xmlns:alarm="clr-namespace:HiCore.EquipmentFramework.Config.View.Alarms"
+             xmlns:event="clr-namespace:HiCore.EquipmentFramework.Config.View.Events"
+             xmlns:recipe="clr-namespace:HiCore.EquipmentFramework.Config.View.Recipes"
+             xmlns:command="clr-namespace:HiCore.EquipmentFramework.Config.View.Commands"
+             xmlns:mapping="clr-namespace:HiCore.EquipmentFramework.Config.View.Mapping"
 
 
-             xmlns:vm="clr-namespace:HicoreEquipmentStudio.ViewModel.Variable"
-             xmlns:vms="clr-namespace:HicoreEquipmentStudio.ViewModel.Alarms"
-             xmlns:vme="clr-namespace:HicoreEquipmentStudio.ViewModel.Events"
-             xmlns:vmr="clr-namespace:HicoreEquipmentStudio.ViewModel.Recipes"
-             xmlns:vmc="clr-namespace:HicoreEquipmentStudio.ViewModel.Commands"
-             xmlns:vmm="clr-namespace:HicoreEquipmentStudio.ViewModel.Mapping"
+             xmlns:vm="clr-namespace:HiCore.EquipmentFramework.Config.ViewModel.Variable"
+             xmlns:vms="clr-namespace:HiCore.EquipmentFramework.Config.ViewModel.Alarms"
+             xmlns:vme="clr-namespace:HiCore.EquipmentFramework.Config.ViewModel.Events"
+             xmlns:vmr="clr-namespace:HiCore.EquipmentFramework.Config.ViewModel.Recipes"
+             xmlns:vmc="clr-namespace:HiCore.EquipmentFramework.Config.ViewModel.Commands"
+             xmlns:vmm="clr-namespace:HiCore.EquipmentFramework.Config.ViewModel.Mapping"
 
              StartupUri="MainWindow.xaml">
 

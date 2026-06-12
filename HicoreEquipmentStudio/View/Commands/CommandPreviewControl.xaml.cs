@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HicoreEquipmentStudio.View.Commands
+namespace HiCore.EquipmentFramework.Config.View.Commands
 {
     /// <summary>
     /// Interaction logic for CommandPreviewControl.xaml

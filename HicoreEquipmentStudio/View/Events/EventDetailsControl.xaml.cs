@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HicoreEquipmentStudio.View.Events
+namespace HiCore.EquipmentFramework.Config.View.Events
 {
     /// <summary>
     /// Interaction logic for EventDetailsControl.xaml

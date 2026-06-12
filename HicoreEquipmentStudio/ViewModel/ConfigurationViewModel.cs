@@ -1,6 +1,6 @@
-﻿using HicoreEquipmentStudio.Commands;
-using HicoreEquipmentStudio.Core;
-using HicoreEquipmentStudio.ViewModel;
+﻿using HiCore.EquipmentFramework.Config.Commands;
+using HiCore.EquipmentFramework.Config.Core;
+using HiCore.EquipmentFramework.Config.ViewModel;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 

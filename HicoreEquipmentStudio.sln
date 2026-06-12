@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HicoreEquipmentStudio", "HicoreEquipmentStudio\HicoreEquipmentStudio.csproj", "{14C8F3C7-C127-4E0A-AAA0-B838AB55A68F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program1", "Program1\Program1.csproj", "{BDEAC07F-EA26-4795-8CDA-7A4AA9E1F5DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiCore.EquipmentFramework.Config", "HicoreEquipmentStudio\HiCore.EquipmentFramework.Config.csproj", "{14C8F3C7-C127-4E0A-AAA0-B838AB55A68F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{14C8F3C7-C127-4E0A-AAA0-B838AB55A68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14C8F3C7-C127-4E0A-AAA0-B838AB55A68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14C8F3C7-C127-4E0A-AAA0-B838AB55A68F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BDEAC07F-EA26-4795-8CDA-7A4AA9E1F5DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDEAC07F-EA26-4795-8CDA-7A4AA9E1F5DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDEAC07F-EA26-4795-8CDA-7A4AA9E1F5DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDEAC07F-EA26-4795-8CDA-7A4AA9E1F5DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

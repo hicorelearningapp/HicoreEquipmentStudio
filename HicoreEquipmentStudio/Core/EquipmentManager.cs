@@ -1,9 +1,9 @@
-﻿using HicoreEquipmentStudio.Model;
-using HicoreEquipmentStudio.Models;
+﻿using HiCore.EquipmentFramework.Config.Model;
+using HiCore.EquipmentFramework.Config.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace HicoreEquipmentStudio.Core
+namespace HiCore.EquipmentFramework.Config.Core
 {
     public class EquipmentManager
     {

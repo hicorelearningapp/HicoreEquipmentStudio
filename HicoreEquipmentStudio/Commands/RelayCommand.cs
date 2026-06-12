@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace HicoreEquipmentStudio.Commands
+namespace HiCore.EquipmentFramework.Config.Commands
 {
     public class RelayCommand : ICommand
     {

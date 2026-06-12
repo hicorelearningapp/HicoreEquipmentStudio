@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace HicoreEquipmentStudio.Models
+namespace HiCore.EquipmentFramework.Config.Models
 {
     public class RecipeModel : INotifyPropertyChanged
     {

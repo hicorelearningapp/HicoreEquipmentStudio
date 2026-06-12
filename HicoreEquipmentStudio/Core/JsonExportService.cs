@@ -1,4 +1,4 @@
-﻿using HicoreEquipmentStudio.Interfaces;
+﻿using HiCore.EquipmentFramework.Config.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace HicoreEquipmentStudio.Core
+namespace HiCore.EquipmentFramework.Config.Core
 {
     public static class JsonExportService
     {

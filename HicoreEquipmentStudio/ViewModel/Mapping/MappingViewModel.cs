@@ -1,17 +1,17 @@
-﻿using HicoreEquipmentStudio.Model;
-using HicoreEquipmentStudio.Models;
-using HicoreEquipmentStudio.View.Alarms;
-using HicoreEquipmentStudio.View.Commands;
-using HicoreEquipmentStudio.View.Events;
-using HicoreEquipmentStudio.View.Mapping;
-using HicoreEquipmentStudio.View.Recipes;
-using HicoreEquipmentStudio.View.Variable;
+﻿using HiCore.EquipmentFramework.Config.Model;
+using HiCore.EquipmentFramework.Config.Models;
+using HiCore.EquipmentFramework.Config.View.Alarms;
+using HiCore.EquipmentFramework.Config.View.Commands;
+using HiCore.EquipmentFramework.Config.View.Events;
+using HiCore.EquipmentFramework.Config.View.Mapping;
+using HiCore.EquipmentFramework.Config.View.Recipes;
+using HiCore.EquipmentFramework.Config.View.Variable;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 
-namespace HicoreEquipmentStudio.ViewModel.Mapping
+namespace HiCore.EquipmentFramework.Config.ViewModel.Mapping
 {
     public class MappingViewModel : BaseViewModel
     {

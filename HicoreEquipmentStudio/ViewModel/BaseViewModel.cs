@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace HicoreEquipmentStudio.ViewModel
+namespace HiCore.EquipmentFramework.Config.ViewModel
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

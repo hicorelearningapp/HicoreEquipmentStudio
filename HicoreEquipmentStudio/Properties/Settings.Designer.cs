@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HicoreEquipmentStudio.Properties
+namespace HiCore.EquipmentFramework.Config.Properties
 {
 
 

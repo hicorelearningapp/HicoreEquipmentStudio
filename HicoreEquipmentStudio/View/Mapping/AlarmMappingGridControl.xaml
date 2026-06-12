@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="HicoreEquipmentStudio.View.Mapping.AlarmMappingGridControl"
+﻿<UserControl x:Class="HiCore.EquipmentFramework.Config.View.Mapping.AlarmMappingGridControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 

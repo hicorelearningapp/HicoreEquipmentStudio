@@ -1,4 +1,4 @@
-﻿namespace HicoreEquipmentStudio.Interfaces
+﻿namespace HiCore.EquipmentFramework.Config.Interfaces
 {
     public interface IJsonSectionProvider
     {

@@ -1,7 +1,7 @@
-﻿<UserControl x:Class="HicoreEquipmentStudio.View.Mapping.MappingMainView"
+﻿<UserControl x:Class="HiCore.EquipmentFramework.Config.View.Mapping.MappingMainView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:HicoreEquipmentStudio.View.Mapping">
+             xmlns:local="clr-namespace:HiCore.EquipmentFramework.Config.View.Mapping">
 
     <Grid Background="#F5F6F8"
           Margin="6">

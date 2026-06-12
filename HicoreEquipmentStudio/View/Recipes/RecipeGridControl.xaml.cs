@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HicoreEquipmentStudio.View.Recipes
+namespace HiCore.EquipmentFramework.Config.View.Recipes
 {
     /// <summary>
     /// Interaction logic for RecipeGridControl.xaml
